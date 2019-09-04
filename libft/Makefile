@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/09/04 10:30:31 by manki             #+#    #+#              #
+#    Updated: 2019/09/04 10:36:22 by manki            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
 SRC = ft_bzero.c ft_putstr.c ft_putchar.c ft_putendl.c ft_putnbr.c ft_strnew.c \
@@ -33,27 +45,32 @@ END_COLOR = \033[0m
 
 OBJ = $(addprefix $(BIN_FOLDER),$(SRC:.c=.o))
 
+FLAGS = -Wall -Wextra -Werror
+CC = gcc
+
 all: $(NAME)
 
 bin:
 	@mkdir bin
 
-$(NAME): bin  $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@printf "$(GREEN) LIBFT DONE SUCESS! $(END_COLOR)"
+$(NAME): bin  $(HEADER) $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	printf "$(GREEN) LIBFT DONE SUCESS! $(END_COLOR)"
 
 $(BIN_FOLDER)%.o :%.c
-	@gcc $< -c -I $(HEADER) -o $@ -Wall -Wextra -Werror
-	@printf "$(YELLOW) Compiling:$(END_COLOR) $<  $(GREEN)[OK] $(END_COLOR)              \r"
+	$(CC) $< -c -I $(HEADER) -o $@ $(FLAGS)
+	printf "$(YELLOW) Compiling:$(END_COLOR) $<  $(GREEN)[OK] $(END_COLOR)              \r"
 
 clean: 
-	@rm -rf $(BIN_FOLDER)
-	@printf "$(GREEN) Clean libft done $(END_COLOR)\n"
+	rm -rf $(BIN_FOLDER)
+	printf "$(GREEN) Clean libft done $(END_COLOR)\n"
 
 fclean: clean
-	@rm -rf $(NAME)
-	@printf "$(GREEN) Fclean libft done $(END_COLOR)\n"
+	rm -rf $(NAME)
+	printf "$(GREEN) Fclean libft done $(END_COLOR)\n"
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+.SILENT:

@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/09/03 19:06:36 by manki            ###   ########.fr        #
+#    Updated: 2019/09/04 10:36:27 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC_PATH = ./inc/
 OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 
-SRC_NAME = 
+SRC_NAME = main.c
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a
@@ -67,7 +67,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 $(NAME): $(LIB) $(INC) $(OBJ)
 	$(CC) $(FLAGS) $(SRC) $(LIB) -o $(NAME)
-	echo "✅  $(_GREEN)$(NAME) created 😎 $(_END)"
+	echo "\n✅  $(_GREEN)$(NAME) created 😎 $(_END)"
 
 $(LIB): FORCE
 	make -C libft all
