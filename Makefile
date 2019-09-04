@@ -21,7 +21,7 @@ INC_PATH = ./inc/
 OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 
-SRC_NAME = main.c ft_check_line.c
+SRC_NAME = main.c ft_check_line.c init_room.c
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a

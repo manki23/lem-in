@@ -12,23 +12,20 @@
 
 #include "../inc/lem_in.h"
 
-/*
-** static void		ft_stock_input(void)
-** {
-**	function to stock the input in our structure
-**}
-*/
-
 int		main(void)
 {
 	char	*input;
+	t_all	all;
 
+	all.room = NULL;
 	while (get_next_line(0, &input) == 1)
 	{
 		if (!ft_check_line(input))
 			ft_error("ERROR", 2);
+		stock_room(input, all.room);
 //		ft_stock_input();
 		ft_strdel(&input);
 	}
+	print_room_name(all.room);
 	return (0);
 }
