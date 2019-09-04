@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/04 12:37:27 by manki            ###   ########.fr       */
+/*   Created: 2017/11/19 09:23:02 by manki             #+#    #+#             */
+/*   Updated: 2017/11/19 09:24:41 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#include "libft.h"
 
-/*
-static void		ft_stock_input(void)
+int		ft_str_is_numeric(char *str)
 {
-	fuction to stock the input in our structure
-}
-*/
-int		main(void)
-{
-	char	*input;
-	int		result;
+	int		i;
+	int		res;
 
-	while (get_next_line(0, &input) == 1)
-	{
-//		result = ft_check_line(input);
-//		ft_printf("result = %d\n", result);
-		if (!ft_check_line(input))
-			ft_error("ERROR", 2);
-//		ft_stock_input();
-		ft_strdel(&input);
-	}
-	return (0);
+	res = 1;
+	i = -1;
+	while (res && str[++i])
+		res = ft_isdigit(str[i]);
+	return (res);
 }

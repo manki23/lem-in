@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/09/04 10:36:27 by manki            ###   ########.fr        #
+#    Updated: 2019/09/04 12:12:09 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC_PATH = ./inc/
 OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 
-SRC_NAME = main.c
+SRC_NAME = main.c ft_check_line.c
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a

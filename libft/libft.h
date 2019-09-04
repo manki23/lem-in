@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 15:02:10 by yodana            #+#    #+#             */
-/*   Updated: 2019/09/04 10:58:26 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/04 11:22:43 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ double			ft_power(double nbr, double power);
 char			*ft_strsub_fr(char const *s, unsigned int start, size_t len);
 char			*ft_itoa_u(long long nbr);
 char			*ft_get_txt(int fd);
+
 void			ft_error(char *str, int fd);
+int				ft_str_is_numeric(char *str);
 
 #endif
