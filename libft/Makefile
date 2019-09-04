@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 10:30:31 by manki             #+#    #+#              #
-#    Updated: 2019/09/04 10:36:22 by manki            ###   ########.fr        #
+#    Updated: 2019/09/04 11:01:05 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC = ft_bzero.c ft_putstr.c ft_putchar.c ft_putendl.c ft_putnbr.c ft_strnew.c \
 	ft_conv.c ft_conv_char.c ft_conv_f.c \
 	ft_lst.c ft_printf.c ft_calc.c ft_calc_exposant.c \
 	ft_check.c ft_conv_b.c ft_conv_e.c ft_conv_spe.c \
-	ft_prec_champ.c norme.c 
+	ft_prec_champ.c ft_error.c  norme.c
 
 HEADER = libft.h
 

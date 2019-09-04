@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 19:21:00 by yodana            #+#    #+#             */
-/*   Updated: 2018/11/19 12:12:47 by yodana           ###   ########.fr       */
+/*   Created: 2019/09/04 10:40:17 by manki             #+#    #+#             */
+/*   Updated: 2019/09/04 10:57:52 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_error(char *str, int fd)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
-	{
-		((char*)dest)[i] = ((const char*)src)[i];
-		i++;
-	}
-	return (dest);
+	ft_putendl_fd(str,fd);
+	exit(-1);
 }
