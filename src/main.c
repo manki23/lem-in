@@ -26,5 +26,6 @@ int		main(void)
 		ft_strdel(&input);
 	}
 	ft_print_room_name(all.room);
+	free_all(&all);
 	return (0);
 }

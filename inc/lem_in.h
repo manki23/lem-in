@@ -37,5 +37,5 @@ typedef struct		s_all
 
 void				ft_stock_room(char *input, t_room **begin);
 void				ft_print_room_name(t_room *begin);
-
+void				free_all(t_all *all);
 #endif

@@ -12,7 +12,17 @@
 
 #include "libft.h"
 
-static int	ft_mot(char const *s, char c)
+static	int	ft_letter(char const *s, char c)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != c && s[i])
+		i++;
+	return (i);
+}
+
+static	int	ft_mot(char const *s, char c)
 {
 	int i;
 	int words;
@@ -41,13 +51,13 @@ char		**ft_strsplit(char const *s, char c)
 	k = 0;
 	i = 0;
 	j = 0;
-	if (s == NULL || !(new = (char**)malloc(sizeof(char*) * ft_mot(s, c) + 1)))
+	if (s == NULL || !(new = (char**)malloc(sizeof(char*) * (ft_mot(s, c) + 1))))
 		return (NULL);
 	while (i < ft_mot(s, c))
 	{
 		while (s[j] == c && s[j])
 			j++;
-		if (!(new[i] = (char*)malloc(sizeof(char) * j + 1)))
+		if (!(new[i] = (char*)malloc(sizeof(char) * (ft_letter(&s[j], c) + 1))))
 			return (NULL);
 		while (s[j] != c && s[j])
 			new[i][k++] = (char)s[j++];
