@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/04 12:11:53 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/05 14:36:55 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,27 @@
 
 # include "../libft/libft.h"
 
-enum		{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
+enum	{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
 
-int			ft_check_line(char *in);
+int					ft_check_line(char *in);
 
-typedef struct    s_room
+typedef struct		s_room
 {
-    char *name;
-    int x;
-    int y;
-    char **connexion;
-    struct s_room *next;
-}                   t_room;        
+	char			*name;
+	int				x;
+	int				y;
+	char			**connexion;
+	struct s_room	*next;
+}					t_room;
 
-typedef struct     s_all
+typedef struct		s_all
 {
-    int ants;
-    struct s_room *room;
+	int				ants;
+	struct s_room	*room;
 
-}           t_all;
+}					t_all;
 
-void		stock_room(char *input, t_room **begin);
-void	print_room_name(t_room *begin);
+void				ft_stock_room(char *input, t_room **begin);
+void				ft_print_room_name(t_room *begin);
+
 #endif

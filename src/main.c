@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/04 12:58:13 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/05 14:37:30 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ int		main(void)
 	{
 		if (!ft_check_line(input))
 			ft_error("ERROR", 2);
-		stock_room(input, &all.room);
-//		ft_stock_input();
+		ft_stock_room(input, &all.room);
 		ft_strdel(&input);
 	}
-	print_room_name(all.room);
+	ft_print_room_name(all.room);
 	return (0);
 }
