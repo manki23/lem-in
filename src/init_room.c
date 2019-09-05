@@ -4,6 +4,7 @@ void	print_room_name(t_room *begin)
 {
 	while (begin)
 	{
+		ft_printf("name de la room == %s\n", begin->name);
 		begin = begin->next;
 	}
 }
@@ -16,17 +17,17 @@ void		ft_add_room(t_room **begin, t_room *new)
 	{
 		tmp = *begin;
 		if (tmp == NULL)
-			tmp = new;
+			*begin = new;
 		else
 		{
-			while (tmp)
+			while (tmp->next)
 				tmp = tmp->next;
-			tmp = new;
+			tmp->next = new;
 		}
 	}
 }
 
-void		stock_room(char *input, t_room *begin)
+void		stock_room(char *input, t_room **begin)
 {
 	char **s;
 	int i;
@@ -42,6 +43,6 @@ void		stock_room(char *input, t_room *begin)
 	room->x = ft_atoi(s[1]);
 	room->y = ft_atoi(s[2]);
 	room->next = NULL;
-	ft_add_room(&begin, room);
+	ft_add_room(begin, room);
 	ft_strrdel(s);
 }

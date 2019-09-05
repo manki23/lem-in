@@ -22,7 +22,7 @@ int		main(void)
 	{
 		if (!ft_check_line(input))
 			ft_error("ERROR", 2);
-		stock_room(input, all.room);
+		stock_room(input, &all.room);
 //		ft_stock_input();
 		ft_strdel(&input);
 	}

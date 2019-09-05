@@ -18,8 +18,7 @@
 enum		{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
 
 int			ft_check_line(char *in);
-void		stock_room(char *input, t_room *begin);
-void	print_room_name(t_room *begin);
+
 typedef struct    s_room
 {
     char *name;
@@ -36,5 +35,6 @@ typedef struct     s_all
 
 }           t_all;
 
-
+void		stock_room(char *input, t_room **begin);
+void	print_room_name(t_room *begin);
 #endif
