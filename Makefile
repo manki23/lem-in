@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/09/05 14:39:48 by manki            ###   ########.fr        #
+#    Updated: 2019/09/06 16:25:04 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ INC_PATH = ./inc/
 OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 
-SRC_NAME = main.c ft_check_line.c ft_init_room.c free.c
+SRC_NAME = main.c ft_check_line.c ft_check_map.c ft_init_room.c free.c \
+		   ft_display_all.c ft_tube_list.c ft_room_list.c ft_stock_tube.c
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a
@@ -33,7 +34,7 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 
@@ -55,7 +56,7 @@ _END=$ \033[0m
 ##   TARGETS    ##
 ##################
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re norme
 
 all: $(LIB) $(OBJ_PATH) $(NAME)
 
@@ -63,25 +64,25 @@ $(OBJ_PATH):
 	mkdir $@
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIB) $(INC) $(OBJ)
-	$(CC) $(FLAGS) $(SRC) $(LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) $(LIB) -o $(NAME)
 	echo "\n✅  $(_GREEN)$(NAME) created 😎 $(_END)"
 
 $(LIB): FORCE
-	make -C libft all
+	$(MAKE) -C libft all
 
 FORCE:
 
 clean:
-	make -C libft clean
-	/bin/rm -rf $(OBJ_PATH)
+	$(MAKE) -C libft clean
+	$(RM) -r $(OBJ_PATH)
 	echo "❌  $(_RED)OBJECT FILES DELETED 😱 $(_END)"
 
 fclean: clean
-	make -C libft fclean
-	/bin/rm -f $(NAME)
+	$(MAKE) -C libft fclean
+	$(RM) $(NAME)
 	echo "❌  $(_RED)$(NAME) DELETED 😱 $(_END)"
 
 re: fclean all

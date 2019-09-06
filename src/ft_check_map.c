@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 11:26:17 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 14:48:51 by manki            ###   ########.fr       */
+/*   Created: 2019/09/06 11:27:37 by manki             #+#    #+#             */
+/*   Updated: 2019/09/06 16:13:11 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void	free_all(t_all *all)
+char			ft_check_map(char *input, char line_id, t_all *map)
 {
-	t_tube	*tmp1;
-	t_room	*tmp2;
-	t_tube	*tube_ref;
-	t_room	*room_ref;
-
-	tube_ref = all->tube;
-	room_ref = all->room;
-	while (tube_ref)
-	{
-		ft_strdel(&(tube_ref->room_a));
-		ft_strdel(&(tube_ref->room_b));
-		tmp1 = tube_ref->next;
-		free(tube_ref);
-		tube_ref = tmp1;
-	}
-	while (room_ref)
-	{
-		ft_strdel(&(room_ref->name));
-		tmp2 = room_ref->next;
-		free(room_ref);
-		room_ref = tmp2;
-	}
+	if (line_id == NUMBER && map->ants < 0)
+		map->ants = ft_atoi(input);
+	else if (line_id == ROOM && map->ants > 0 && !map->tube)
+		return (ft_stock_room(input, &map->room));
+	else if (line_id == TUBE && map->ants > 0 && map->room != NULL)
+		return (ft_stock_tube(input, &map));
+	else if (line_id != COMMENT && line_id != COMMAND)
+		return (ERROR);
+	return (1);
 }

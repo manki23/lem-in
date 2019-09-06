@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_display_all.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 11:26:17 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 14:48:51 by manki            ###   ########.fr       */
+/*   Created: 2019/09/06 14:35:59 by manki             #+#    #+#             */
+/*   Updated: 2019/09/06 15:45:04 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void	free_all(t_all *all)
+void	ft_display_all(t_all *map)
 {
-	t_tube	*tmp1;
-	t_room	*tmp2;
-	t_tube	*tube_ref;
-	t_room	*room_ref;
+	t_tube	*tube_tmp;
+	t_room	*room_tmp;
 
-	tube_ref = all->tube;
-	room_ref = all->room;
-	while (tube_ref)
+	ft_putendl("---------------------------------");
+	ft_printf("Ants number: %d\nRooms:\n", map->ants);
+	room_tmp = map->room;
+	while (room_tmp)
 	{
-		ft_strdel(&(tube_ref->room_a));
-		ft_strdel(&(tube_ref->room_b));
-		tmp1 = tube_ref->next;
-		free(tube_ref);
-		tube_ref = tmp1;
+		ft_printf("%s\n", room_tmp->name);
+		room_tmp = room_tmp->next;
 	}
-	while (room_ref)
+	ft_putendl("Tubes:");
+	tube_tmp = map->tube;
+	while (tube_tmp)
 	{
-		ft_strdel(&(room_ref->name));
-		tmp2 = room_ref->next;
-		free(room_ref);
-		room_ref = tmp2;
+		ft_printf("%s - %s\n", tube_tmp->room_a, tube_tmp->room_b);
+		tube_tmp = tube_tmp->next;
 	}
 }

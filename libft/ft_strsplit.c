@@ -3,68 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 12:50:21 by yodana            #+#    #+#             */
-/*   Updated: 2018/11/26 16:47:07 by yodana           ###   ########.fr       */
+/*   Created: 2017/11/12 13:47:21 by manki             #+#    #+#             */
+/*   Updated: 2017/12/27 15:40:33 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-static	int	ft_letter(char const *s, char c)
+static int		ft_wrdlen(const char *str, char c)
 {
-	int i;
+	int		i;
 
 	i = 0;
-	while (s[i] != c && s[i])
+	while (str[i] && str[i] != c)
 		i++;
 	return (i);
 }
 
-static	int	ft_mot(char const *s, char c)
+static int		ft_nbwrd(const char *str, char c)
 {
-	int i;
-	int words;
+	int		i;
+	int		cut;
 
-	words = 0;
 	i = 0;
-	while (s[i])
+	cut = 0;
+	while (str[i])
 	{
-		while (s[i] == c && s[i])
+		while (str[i] == c)
 			i++;
-		if (s[i])
-			words++;
-		while (s[i] != c && s[i])
+		if (str[i])
+			cut++;
+		while (str[i] && str[i] != c)
 			i++;
 	}
-	return (words);
+	return (cut);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
-	char	**new;
+	char	**fresh;
 	int		i;
 	int		j;
 	int		k;
 
-	k = 0;
-	i = 0;
-	j = 0;
-	if (s == NULL || !(new = (char**)malloc(sizeof(char*) * (ft_mot(s, c) + 1))))
+	if (!s || !(fresh = (char **)malloc(sizeof(char *) * (ft_nbwrd(s, c) + 1))))
 		return (NULL);
-	while (i < ft_mot(s, c))
+	i = 0;
+	j = -1;
+	while (++j < ft_nbwrd(s, c))
 	{
-		while (s[j] == c && s[j])
-			j++;
-		if (!(new[i] = (char*)malloc(sizeof(char) * (ft_letter(&s[j], c) + 1))))
+		while (s[i] && s[i] == c)
+			i++;
+		if (!(fresh[j] = (char *)malloc(ft_wrdlen(&s[i], c) + 1)))
 			return (NULL);
-		while (s[j] != c && s[j])
-			new[i][k++] = (char)s[j++];
-		new[i][k] = '\0';
 		k = 0;
-		i++;
+		while (s[i] && s[i] != c)
+			fresh[j][k++] = s[i++];
+		fresh[j][k] = '\0';
 	}
-	new[i] = NULL;
-	return (new);
+	fresh[j] = 0;
+	return (fresh);
 }

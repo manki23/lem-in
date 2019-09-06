@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 12:09:23 by manki             #+#    #+#             */
-/*   Updated: 2019/09/05 16:02:28 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/06 11:24:27 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,23 @@
 
 static void		ft_coord(char *str, int *i, int *ok)
 {
+	char	nb_len;
+	char	*ref;
+
 	if (i[0] > 0 && str[i[0]] == ' ')
 	{
 		i[0]++;
 		ok[0]++;
 	}
+	nb_len = 0;
+	ref = &str[i[0]];
 	while (str[i[0]] && str[i[0]] != ' ' && ft_isdigit(str[i[0]]))
+	{
+		nb_len++;
 		i[0]++;
+	}
+	if (!(nb_len > 0 && nb_len <= 10 && ft_atoll(ref) <= INT_MAX))
+		ok[0]--;
 }
 
 static int		ft_is_room(char *str)
