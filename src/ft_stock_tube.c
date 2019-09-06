@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:11:01 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 16:28:39 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/06 16:52:45 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char		ft_tube_already_exist(char *room1, char *room2, t_tube *list)
 	return (already_exist);
 }
 
-static void		ft_add_tube(char **split, t_tube **list)
+static char		ft_add_tube(char **split, t_tube **list)
 {
 	if (!ft_tube_already_exist(split[0], split[1], list[0]))
 	{
@@ -65,7 +65,10 @@ static void		ft_add_tube(char **split, t_tube **list)
 			list[0] = ft_tube_lstnew(split[0], split[1]);
 		else
 			ft_tube_lstadd(list, split[0], split[1]);
+		return (1);
 	}
+	else
+		return (0);
 }
 
 char			ft_stock_tube(char *input, t_all **map)
@@ -74,7 +77,6 @@ char			ft_stock_tube(char *input, t_all **map)
 	char	ret;
 
 	ret = 0;
-	split = NULL;
 	if (!(split = ft_strsplit(input, '-')))
 		return (0);
 	if (ft_both_are_room(split, map[0]->room))

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 12:09:23 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 11:24:27 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/06 16:39:13 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,8 @@
 ** implemente :
 ** - Verifier qu'une ROOM n'est pas deja existante (donner deux fois la meme
 ** ROOM avec des coordonnees differentes est une erreur).
-** - Verifier qu'un TUBE connecte bien deux ROOM existantes (definies et
-** stockees precedemment).
-** - Verifier que toutes les ROOM sont declarees avant les TUBE, s'arreter a la
-** premiere ROOM declaree apres un TUBE
 ** - A la premiere declaration de TUBE verifier la presence d'une ROOM start et
 ** d'une ROOM end, arreter l'analyse des TUBES sinon.
-** - des espaces a la fin d'une ligne correcte est concidere comme une erreur
-** - une ligne vide est une erreur.
 */
 
 static void		ft_coord(char *str, int *i, int *ok)

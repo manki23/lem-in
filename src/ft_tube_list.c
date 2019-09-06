@@ -6,13 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:19:25 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 16:20:04 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/06 16:41:24 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-t_tube	*ft_tube_lstnew(char *room_a, char *room_b)
+t_tube		*ft_tube_lstnew(char *room_a, char *room_b)
 {
 	t_tube	*fresh;
 
