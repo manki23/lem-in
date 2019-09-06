@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 12:09:23 by manki             #+#    #+#             */
-/*   Updated: 2019/09/04 12:53:40 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/05 16:02:28 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 ** implemente :
 ** - Verifier qu'une ROOM n'est pas deja existante (donner deux fois la meme
 ** ROOM avec des coordonnees differentes est une erreur).
-** - Verifier qu'un TUBE connect bien deux ROOM existantes (definies et
+** - Verifier qu'un TUBE connecte bien deux ROOM existantes (definies et
 ** stockees precedemment).
 ** - Verifier que toutes les ROOM sont declarees avant les TUBE, s'arreter a la
 ** premiere ROOM declaree apres un TUBE
 ** - A la premiere declaration de TUBE verifier la presence d'une ROOM start et
 ** d'une ROOM end, arreter l'analyse des TUBES sinon.
+** - des espaces a la fin d'une ligne correcte est concidere comme une erreur
+** - une ligne vide est une erreur.
 */
 
 static void		ft_coord(char *str, int *i, int *ok)
@@ -81,7 +83,8 @@ int				ft_check_line(char *in)
 	int		len;
 
 	len = ft_strlen(in);
-	if (len >= 1 && ft_str_is_numeric(in))
+	if (len >= 1 && len <= 10 && ft_str_is_numeric(in) &&
+			ft_atoll(in) <= INT_MAX)
 		return (NUMBER);
 	else if (len >= 2 && in[0] == '#' && in[1] == '#')
 		return (COMMAND);

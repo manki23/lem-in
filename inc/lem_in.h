@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/05 14:36:55 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/05 16:01:05 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # include "../libft/libft.h"
+# include "limits.h"
 
 enum	{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
 
