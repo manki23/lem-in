@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:35:59 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 15:45:04 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 11:58:09 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void	ft_display_all(t_all *map)
 	room_tmp = map->room;
 	while (room_tmp)
 	{
-		ft_printf("%s\n", room_tmp->name);
+		ft_printf("%s", room_tmp->name);
+		if (!room_tmp->command)
+			ft_putendl(" (no command)");
+		else if (room_tmp->command == CMD_START)
+			ft_putendl(" (start)");
+		else if (room_tmp->command == CMD_END)
+			ft_putendl(" (end)");
 		room_tmp = room_tmp->next;
 	}
 	ft_putendl("Tubes:");

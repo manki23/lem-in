@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:26:17 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 14:48:51 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 11:22:28 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	free_all(t_all *all)
 		free(room_ref);
 		room_ref = tmp2;
 	}
+	ft_strdel(&all->command_stack);
 }

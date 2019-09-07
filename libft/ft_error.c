@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 10:40:17 by manki             #+#    #+#             */
-/*   Updated: 2019/09/04 10:57:52 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 12:17:06 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_error(char *str, int fd)
 {
-	ft_putendl_fd(str,fd);
+	ft_putendl_fd(str, fd);
 	exit(-1);
 }
