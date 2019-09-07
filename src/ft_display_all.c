@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:35:59 by manki             #+#    #+#             */
-/*   Updated: 2019/09/07 11:58:09 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 12:34:12 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_display_all(t_all *map)
 	t_room	*room_tmp;
 
 	ft_putendl("---------------------------------");
-	ft_printf("Ants number: %d\nRooms:\n", map->ants);
+	ft_printf("Ants number: %d\n", map->ants);
+	ft_printf("Rooms: (%d)\n", ft_room_lstlen(map->room));
 	room_tmp = map->room;
 	while (room_tmp)
 	{
@@ -31,7 +32,7 @@ void	ft_display_all(t_all *map)
 			ft_putendl(" (end)");
 		room_tmp = room_tmp->next;
 	}
-	ft_putendl("Tubes:");
+	ft_printf("Tubes: (%d)\n", ft_tube_lstlen(map->tube));
 	tube_tmp = map->tube;
 	while (tube_tmp)
 	{

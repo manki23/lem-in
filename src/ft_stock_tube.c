@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:11:01 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 16:52:45 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 13:56:38 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char		ft_both_are_room(char **split, t_room *list)
 	return (room_a && room_b);
 }
 
-static char		ft_cmp(char *str1, char *str2, char *ref1, char *ref2)
+char			ft_cmp(char str1[], char str2[], char ref1[], char ref2[])
 {
 	if (!ft_strcmp(str1, ref1) && !ft_strcmp(str2, ref2))
 		return (1);

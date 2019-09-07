@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:27:37 by manki             #+#    #+#             */
-/*   Updated: 2019/09/07 11:54:13 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 15:57:13 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ char			ft_map_enough_to_launch(t_all *map)
 	char	ret;
 
 	ret = 1;
-	if (map->ants <= 0 || !map->room || !map->tube)
+	if (map->ants <= 0 || ft_room_lstlen(map->room) < 2 ||
+			ft_tube_lstlen(map->tube) < 1)
 		ret = 0;
 	return (ret);
 }

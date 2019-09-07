@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:19:25 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 16:41:24 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 13:52:31 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,21 @@ int			ft_tube_lstlen(t_tube *list)
 		}
 	}
 	return (len);
+}
+
+char		ft_tube_exist(t_tube *list, char room_a[], char room_b[])
+{
+	t_tube	*tmp;
+
+	if (list)
+	{
+		tmp = list;
+		while (tmp)
+		{
+			if (ft_cmp(room_a, room_b, tmp->room_a, tmp->room_b))
+				return (1);
+			tmp = tmp->next;
+		}
+	}
+	return (0);
 }

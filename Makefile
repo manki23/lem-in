@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/09/06 16:25:04 by manki            ###   ########.fr        #
+#    Updated: 2019/09/07 15:02:01 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 
 SRC_NAME = main.c ft_check_line.c ft_check_map.c ft_init_room.c free.c \
-		   ft_display_all.c ft_tube_list.c ft_room_list.c ft_stock_tube.c
+		   ft_display_all.c ft_tube_list.c ft_room_list.c ft_stock_tube.c \
+		   ft_matrice_utils.c ft_floyd_algo.c ft_solver.c
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a
