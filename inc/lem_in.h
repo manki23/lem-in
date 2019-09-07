@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/07 15:38:34 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/07 17:20:15 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,5 @@ t_tube				*ft_tube_lstnew(char *room_a, char *room_b);
 void				ft_tube_lstadd(t_tube **list, char *room_a, char *room_b);
 int					ft_tube_lstlen(t_tube *list);
 char				ft_tube_exist(t_tube *list, char room_a[], char room_b[]);
-
-int					**ft_alloc_matrice(int **mat, int len);
-void				ft_free_matrice(int **mat, int len);
-void				ft_display_matrice(char str[], int **mat, int len);
-
-char				ft_floyd_algo(t_all *map);
-void				ft_solver(int **mat_d, int **mat_p, t_all *map);
 
 #endif
