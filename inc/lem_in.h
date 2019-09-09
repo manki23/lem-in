@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/07 17:20:15 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/09 17:24:45 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,31 @@ typedef struct		s_room
 {
 	char			*name;
 	char			command;
+	char			visit;
 	int				x;
 	int				y;
+	struct s_room	**tab;
 	struct s_room	*next;
+	struct s_room	*prec;
+	struct s_room	*old_next;
+	struct s_room	*old_prec;
 }					t_room;
-
-typedef struct		s_tube
-{
-	char			*room_a;
-	char			*room_b;
-	struct s_tube	*next;
-}					t_tube;
 
 typedef struct		s_all
 {
 	int				ants;
 	char			*command_stack;
-	t_tube			*tube;
 	t_room			*room;
 
 }					t_all;
 
+typedef struct		s_queue
+{
+	t_room			*room;
+	struct s_queue	*next;
+}					t_queue;
+
 char				ft_stock_room(char *input, t_room **list, char **cmd_stack);
-void				ft_print_room_name(t_room *begin);
 void				free_all(t_all *all);
 
 char				ft_cmp(char str1[], char str2[], char ref1[], char ref2[]);
@@ -67,12 +69,18 @@ void				ft_display_all(t_all *map);
 t_room				*ft_room_lstnew(char *name, t_coord c, char cmd);
 void				ft_room_lstadd(t_room **l, char *name, t_coord c, char cmd);
 int					ft_room_lstlen(t_room *list);
-char				*ft_get_room_name(t_room *list, int position);
+t_room				*ft_get_room(t_room **list, int position);
 int					ft_get_room_pos_by_cmd(t_room *list, char cmd);
 
-t_tube				*ft_tube_lstnew(char *room_a, char *room_b);
-void				ft_tube_lstadd(t_tube **list, char *room_a, char *room_b);
-int					ft_tube_lstlen(t_tube *list);
-char				ft_tube_exist(t_tube *list, char room_a[], char room_b[]);
+int					ft_tab_len(t_room *r);
+char				ft_add_tube(t_room **list, char *room_a, char *room_b);
+
+t_queue				*ft_create_queue(t_room **room);
+void				ft_enqueue(t_queue **list, t_room **room);
+t_queue				*ft_dequeue(t_queue **list);
+void				ft_free_queue(t_queue **list);
+void				ft_print_queue(t_queue *list);
+
+void				ft_breadth_first_search(t_all *map);
 
 #endif

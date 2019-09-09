@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_room.c                                     :+:      :+:    :+:   */
+/*   ft_stock_room.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 14:35:27 by manki             #+#    #+#             */
-/*   Updated: 2019/09/07 12:06:29 by manki            ###   ########.fr       */
+/*   Created: 2019/09/09 13:56:17 by manki             #+#    #+#             */
+/*   Updated: 2019/09/09 13:56:22 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@ static char		ft_room_already_exist(char *room, t_room *list, char cmd)
 		tmp = tmp->next;
 	}
 	return (already_exist);
-}
-
-void			ft_print_room_name(t_room *begin)
-{
-	while (begin)
-	{
-		ft_printf("name de la room == %s\n", begin->name);
-		begin = begin->next;
-	}
 }
 
 static char		ft_add_room(t_room **list, char **s, char cmd)

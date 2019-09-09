@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:18:34 by manki             #+#    #+#             */
-/*   Updated: 2019/09/07 15:19:17 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/09 14:05:46 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ t_room		*ft_room_lstnew(char *name, t_coord c, char cmd)
 		return (NULL);
 	fresh->name = ft_strdup(name);
 	fresh->command = cmd;
+	fresh->visit = 0;
 	fresh->x = c.x;
 	fresh->y = c.y;
+	fresh->tab = NULL;
+	fresh->prec = NULL;
 	fresh->next = NULL;
+	fresh->old_prec = NULL;
+	fresh->old_next = NULL;
 	return (fresh);
 }
 
@@ -59,20 +64,20 @@ int			ft_room_lstlen(t_room *list)
 	return (len);
 }
 
-char		*ft_get_room_name(t_room *list, int position)
+t_room		*ft_get_room(t_room **list, int position)
 {
 	int		i;
 	t_room	*tmp;
 
-	i = 0;
-	if (list)
+	if (*list)
 	{
-		tmp = list;
+		tmp = *list;
+		i = 0;
 		while (tmp)
 		{
 			i++;
 			if (i == position)
-				return (tmp->name);
+				return (tmp);
 			tmp = tmp->next;
 		}
 	}

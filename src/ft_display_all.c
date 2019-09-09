@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:35:59 by manki             #+#    #+#             */
-/*   Updated: 2019/09/07 12:34:12 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/09 13:59:55 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_display_all(t_all *map)
 {
-	t_tube	*tube_tmp;
+	int		i;
 	t_room	*room_tmp;
 
 	ft_putendl("---------------------------------");
@@ -23,20 +23,16 @@ void	ft_display_all(t_all *map)
 	room_tmp = map->room;
 	while (room_tmp)
 	{
-		ft_printf("%s", room_tmp->name);
-		if (!room_tmp->command)
-			ft_putendl(" (no command)");
-		else if (room_tmp->command == CMD_START)
-			ft_putendl(" (start)");
+		if (room_tmp->command == CMD_START)
+			ft_putstr(" (start) ");
 		else if (room_tmp->command == CMD_END)
-			ft_putendl(" (end)");
+			ft_putstr(" (end) ");
+		ft_printf("{%s} has %d connections :\n", room_tmp->name,
+				ft_tab_len(room_tmp));
+		i = -1;
+		while (room_tmp->tab && room_tmp->tab[++i])
+			ft_printf("| %s |\n", room_tmp->tab[i]->name);
+		ft_putendl("");
 		room_tmp = room_tmp->next;
-	}
-	ft_printf("Tubes: (%d)\n", ft_tube_lstlen(map->tube));
-	tube_tmp = map->tube;
-	while (tube_tmp)
-	{
-		ft_printf("%s - %s\n", tube_tmp->room_a, tube_tmp->room_b);
-		tube_tmp = tube_tmp->next;
 	}
 }
