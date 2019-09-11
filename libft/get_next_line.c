@@ -6,15 +6,15 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:12:52 by yodana            #+#    #+#             */
-/*   Updated: 2019/03/27 11:13:19 by yodana           ###   ########.fr       */
+/*   Updated: 2019/09/11 13:58:28 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstcheck(t_list **save, int fd)
+t_list			*ft_lstcheck(t_list **save, int fd)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = *save;
 	if (fd < 0)
@@ -31,7 +31,7 @@ t_list		*ft_lstcheck(t_list **save, int fd)
 	return (tmp);
 }
 
-char		*ft_save(char *save, char **line)
+char			*ft_save(char *save, char **line)
 {
 	int		i;
 	char	*tmp;
@@ -56,9 +56,9 @@ char		*ft_save(char *save, char **line)
 	return (save);
 }
 
-int			get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	static	t_list	*save;
+	static t_list	*save;
 	char			buf[BUFF_SIZE + 1];
 	int				ret;
 	t_list			*current;

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:18:34 by manki             #+#    #+#             */
-/*   Updated: 2019/09/09 14:05:46 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/11 10:53:42 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ t_room		*ft_room_lstnew(char *name, t_coord c, char cmd)
 	fresh->x = c.x;
 	fresh->y = c.y;
 	fresh->tab = NULL;
-	fresh->prec = NULL;
 	fresh->next = NULL;
-	fresh->old_prec = NULL;
-	fresh->old_next = NULL;
+	fresh->parent = NULL;
+	fresh->child = NULL;
+	fresh->old_parent = NULL;
+	fresh->old_child = NULL;
 	return (fresh);
 }
 

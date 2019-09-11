@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/09 17:24:45 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/11 10:53:03 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ typedef struct		s_room
 	int				y;
 	struct s_room	**tab;
 	struct s_room	*next;
-	struct s_room	*prec;
-	struct s_room	*old_next;
-	struct s_room	*old_prec;
+	struct s_room	*parent;
+	struct s_room	*child;
+	struct s_room	*old_parent;
+	struct s_room	*old_child;
 }					t_room;
 
 typedef struct		s_all
