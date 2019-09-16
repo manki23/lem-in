@@ -23,7 +23,7 @@ LIB_PATH = ./libft/
 
 SRC_NAME = main.c ft_check_line.c ft_check_map.c ft_stock_room.c free.c \
 		   ft_display_all.c ft_add_tube.c ft_room_list.c ft_stock_tube.c \
-		   ft_breadth_first_search.c ft_queue_utils.c
+		   ft_breadth_first_search.c ft_queue_utils.c 
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a
@@ -38,7 +38,12 @@ LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
+##################
+## 		SDL   	##
+##################
 
+SDL2   = -I SDL2/include -L SDL2/lib -l SDL2-2.0.0
+SDL2_ttf = -I SDL2_ttf/2.0.15/include -L SDL2_ttf/2.0.15/lib -l SDL2_ttf-2.0.0
 ##################
 ##    COLORS    ##
 ##################
@@ -68,7 +73,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(LIB) $(INC) $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) $(LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) $(LIB) -o $(NAME) $(SDL2) $(SDL2_ttf)
 	echo "\n✅  $(_GREEN)$(NAME) created 😎 $(_END)"
 
 $(LIB): FORCE

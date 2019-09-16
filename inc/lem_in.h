@@ -15,6 +15,8 @@
 
 # include "../libft/libft.h"
 # include "limits.h"
+# include "../SDL2/include/SDL2/SDL.h"
+# include "../SDL2_ttf/2.0.15/include/SDL2/SDL_ttf.h"
 
 enum	{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
 
@@ -84,4 +86,8 @@ void				ft_print_queue(t_queue *list);
 
 void				ft_breadth_first_search(t_all *map);
 
+int         number_ants(int ants, t_room *room, t_room *worst);
+
+
+void	display_window(t_all *all);
 #endif

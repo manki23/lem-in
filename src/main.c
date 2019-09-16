@@ -49,8 +49,9 @@ int				main(void)
 	{
 		ft_display_all(&all);
 		ft_putendl("******************************");
-		ft_breadth_first_search(&all);
+		//ft_breadth_first_search(&all);
 	}
+	display_window(&all);
 	free_all(&all);
 	return (0);
 }
