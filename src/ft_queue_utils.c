@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 14:52:44 by manki             #+#    #+#             */
-/*   Updated: 2019/09/11 12:00:54 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/13 17:49:23 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		ft_print_queue(t_queue *list)
 {
 	t_queue		*tmp;
 
-	ft_putendl("Inside the queue :");
+//	ft_putendl("Inside the queue :");
 	tmp = list;
 	while (tmp)
 	{

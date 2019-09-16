@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/11 13:36:44 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/11 16:54:39 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int				main(void)
 		ft_analyse_input(&input, &all, &end_input);
 	if (ft_map_enough_to_launch(&all))
 	{
-		ft_display_all(&all);
-		ft_putendl("******************************");
+		//ft_display_all(&all);
+		//ft_putendl("******************************");
 		ft_breadth_first_search(&all);
 	}
 	free_all(&all);
