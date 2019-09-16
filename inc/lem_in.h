@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/13 17:09:12 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/16 12:16:24 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ t_queue				*ft_dequeue(t_queue **list);
 void				ft_free_queue(t_queue **list);
 void				ft_print_queue(t_queue *list);
 
-void				ft_breadth_first_search(t_all *map);
+t_queue				*ft_breadth_first_search(t_all *map);
 
 #endif

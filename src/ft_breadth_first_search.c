@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/09/16 11:44:11 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/16 12:19:24 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,7 +301,7 @@ int				ft_cost_computation(t_all **map, t_queue **sol)
 	return (final_cost);
 }
 
-void			ft_breadth_first_search(t_all *map)
+t_queue			*ft_breadth_first_search(t_all *map)
 {
 	t_queue		*list;
 	t_room		*start;
@@ -311,6 +311,7 @@ void			ft_breadth_first_search(t_all *map)
 	int			i;
 	int			y;
 	t_queue		*sol;
+	t_room		*tmp;
 	int			sol_cost;
 	int			_continue_;
 
@@ -360,21 +361,35 @@ void			ft_breadth_first_search(t_all *map)
 		ft_free_queue(&list);
 		ft_check_duplicates(&map);
 		ft_clean_path(&map);
-		ft_print_room_ptr(map->room);
-		ft_copy_in_old(&map);
 		ft_stock_solution(&sol, &map);
-		ft_putendl("Solution begin with :");
-		ft_print_queue(sol);
 		_continue_ = 0;
 		i = ft_cost_computation(&map, &sol);
 		if (i < sol_cost)
 		{
 			sol_cost = i;
 			_continue_ = 1;
+			ft_copy_in_old(&map);
 		}
-		ft_free_queue(&sol);
-		ft_putendl("*********************************************");
+		else
+		{
+			tmp = map->room;
+			while (tmp)
+			{
+				tmp->parent = tmp->old_parent;
+				tmp->child = tmp->old_child;
+				tmp = tmp->next;
+			}
+			ft_free_queue(&sol);
+			ft_stock_solution(&sol, &map);
+		}
+//		ft_print_room_ptr(map->room);
+//		ft_putendl("Solution begin with :");
+//		ft_print_queue(sol);
+		if (_continue_)
+			ft_free_queue(&sol);
+//		ft_putendl("*********************************************");
 		ft_reset_visit(&map);
 		end->parent = NULL;
 	}
+	return (sol);
 }
