@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:35:59 by manki             #+#    #+#             */
-/*   Updated: 2019/09/09 13:59:55 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/16 13:57:33 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,38 @@ void	ft_display_all(t_all *map)
 		ft_putendl("");
 		room_tmp = room_tmp->next;
 	}
+}
+
+void	ft_print_room_ptr(t_room *room)
+{
+	t_room		*tmp;
+
+	tmp = room;
+	while (tmp)
+	{
+		ft_putendl("-------------------");
+		ft_printf("tmp: %s\n", tmp->name);
+		if (tmp->parent)
+			ft_printf("parent = %s\n", tmp->parent->name);
+		if (tmp->child)
+			ft_printf("child = %s\n", tmp->child->name);
+		if (tmp->old_parent)
+			ft_printf("old_parent = %s\n", tmp->old_parent->name);
+		if (tmp->old_child)
+			ft_printf("old_child = %s\n", tmp->old_child->name);
+		tmp = tmp->next;
+	}
+}
+
+void	ft_print_queue(t_queue *list)
+{
+	t_queue	*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		ft_putendl(tmp->room->name);
+		tmp = tmp->next;
+	}
+	ft_putendl("");
 }

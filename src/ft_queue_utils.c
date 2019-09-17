@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 14:52:44 by manki             #+#    #+#             */
-/*   Updated: 2019/09/13 17:49:23 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/16 13:58:29 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,17 @@ void		ft_free_queue(t_queue **list)
 	list[0] = NULL;
 }
 
-void		ft_print_queue(t_queue *list)
+int			ft_queue_len(t_queue *queue)
 {
-	t_queue		*tmp;
+	t_queue	*tmp;
+	int		i;
 
-//	ft_putendl("Inside the queue :");
-	tmp = list;
+	i = 0;
+	tmp = queue;
 	while (tmp)
 	{
-		ft_putendl(tmp->room->name);
+		i++;
 		tmp = tmp->next;
 	}
-	ft_putendl("");
+	return (i);
 }

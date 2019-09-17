@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/16 12:21:35 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/16 13:47:31 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int				main(void)
 		ft_analyse_input(&input, &all, &end_input);
 	if (ft_map_enough_to_launch(&all))
 	{
-		//ft_display_all(&all);
-		//ft_putendl("******************************");
 		solution = ft_breadth_first_search(&all);
 		ft_putendl("\nThe solutions path begin with the following room(s) :");
 		ft_print_queue(solution);

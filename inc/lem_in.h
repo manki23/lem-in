@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/16 12:16:24 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/16 14:15:02 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,6 @@ typedef struct		s_queue
 	struct s_queue	*next;
 }					t_queue;
 
-typedef struct		s_solution
-{
-	unsigned int		cost;
-	t_room				*room_start;
-	struct s_solution	*next;
-}					t_solution;
-
 char				ft_stock_room(char *input, t_room **list, char **cmd_stack);
 void				free_all(t_all *all);
 
@@ -73,6 +66,8 @@ char				ft_check_map(char *input, char line_id, t_all *map);
 char				ft_map_enough_to_launch(t_all *map);
 
 void				ft_display_all(t_all *map);
+void				ft_print_room_ptr(t_room *room);
+void				ft_print_queue(t_queue *list);
 
 t_room				*ft_room_lstnew(char *name, t_coord c, char cmd);
 void				ft_room_lstadd(t_room **l, char *name, t_coord c, char cmd);
@@ -87,8 +82,21 @@ t_queue				*ft_create_queue(t_room **room);
 void				ft_enqueue(t_queue **list, t_room **room);
 t_queue				*ft_dequeue(t_queue **list);
 void				ft_free_queue(t_queue **list);
-void				ft_print_queue(t_queue *list);
+int					ft_queue_len(t_queue *queue);
+
+void				ft_stock_solution(t_queue **sol, t_all **map);
+int					ft_another_path_exist(t_room **room);
+void				ft_visit_node(t_room **room, t_all **map, char *stop);
+void				ft_check_duplicates(t_all **map);
+int					ft_solution_len(t_room *room);
+
+void				ft_put_child(t_room **room, t_room **start);
+void				ft_copy_in_old(t_all **map);
+void				ft_reset_visit(t_all **map);
+void				ft_clean_path(t_all **map);
 
 t_queue				*ft_breadth_first_search(t_all *map);
+
+int					ft_cost_computation(t_all **map, t_queue **sol);
 
 #endif
