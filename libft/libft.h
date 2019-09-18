@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 15:02:10 by yodana            #+#    #+#             */
-/*   Updated: 2019/09/16 13:44:09 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/18 15:40:51 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,8 @@ void			ft_error(char *str, int fd);
 int				ft_str_is_numeric(char *str);
 long long		ft_atoll(const char *str);
 void			ft_sort_integer_table(int *tab, int size);
+void			ft_lsadd(t_list **list, void const *content, size_t c_size);
+void			ft_lstdel_2(t_list **alst);
+size_t			ft_lstprint(t_list list[], char c);
 
 #endif

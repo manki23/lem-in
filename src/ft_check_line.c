@@ -6,20 +6,11 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 12:09:23 by manki             #+#    #+#             */
-/*   Updated: 2019/09/06 16:39:13 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/18 14:21:54 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
-
-/*
-** D'autres checks sont a faire (une fois le stockage des TUBE et ROOM
-** implemente :
-** - Verifier qu'une ROOM n'est pas deja existante (donner deux fois la meme
-** ROOM avec des coordonnees differentes est une erreur).
-** - A la premiere declaration de TUBE verifier la presence d'une ROOM start et
-** d'une ROOM end, arreter l'analyse des TUBES sinon.
-*/
 
 static void		ft_coord(char *str, int *i, int *ok)
 {

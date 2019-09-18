@@ -6,13 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:56:17 by manki             #+#    #+#             */
-/*   Updated: 2019/09/09 13:56:22 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/18 14:51:40 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-static char		ft_room_already_exist(char *room, t_room *list, char cmd)
+static char		ft_room_already_exist(char **s, t_room *list, char cmd)
 {
 	t_room	*tmp;
 	char	already_exist;
@@ -21,8 +21,9 @@ static char		ft_room_already_exist(char *room, t_room *list, char cmd)
 	already_exist = 0;
 	while (tmp && !already_exist)
 	{
-		if (!ft_strcmp(tmp->name, room) ||
-				(cmd != NO_CMD && tmp->command == cmd))
+		if (!ft_strcmp(tmp->name, s[0]) ||
+				(cmd != NO_CMD && tmp->command == cmd) ||
+				((ft_atoi(s[1]) == tmp->x) && (ft_atoi(s[2]) == tmp->y)))
 			already_exist++;
 		tmp = tmp->next;
 	}
@@ -33,7 +34,7 @@ static char		ft_add_room(t_room **list, char **s, char cmd)
 {
 	t_coord		c;
 
-	if (!ft_room_already_exist(s[0], *list, cmd))
+	if (!ft_room_already_exist(s, *list, cmd))
 	{
 		c.x = ft_atoi(s[1]);
 		c.y = ft_atoi(s[2]);

@@ -1,19 +1,22 @@
-50
+#salut
+23
 ##start
-A 1 1
+A 1 2
 G 2 3
-E 3 2
-C 3 4
-D 9 1
-F 2 3
-h 4 3
-i 3 2
-j 0 2
-k 0 3
-l 1 2
+E 3 4
+#ceci est un commentaire inutile ;)
+C 4 5
+D 5 6
+F 6 7
+##new command
+h 7 8
+i 8 9
+j 10 11
+k 9 10
+l 11 12
 ##end
-B 3 2
-x 2 4
+B 13 13
+x 13 14
 A-B
 A-C
 E-A
