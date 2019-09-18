@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/09/16 14:15:00 by manki            ###   ########.fr        #
+#    Updated: 2019/09/17 12:08:19 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 
 CFLAGS = -Wall -Wextra -Werror
-CC = gcc
+CC = gcc -g
 
 
 ##################

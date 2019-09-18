@@ -1,13 +1,19 @@
-2
+50
 ##start
 A 1 1
 G 2 3
 E 3 2
 C 3 4
 D 9 1
-##end
 F 2 3
+h 4 3
+i 3 2
+j 0 2
+k 0 3
+l 1 2
+##end
 B 3 2
+x 2 4
 A-B
 A-C
 E-A
@@ -15,3 +21,11 @@ E-F
 C-G
 D-B
 B-F
+G-k
+k-l
+l-j
+j-F
+F-i
+h-i
+D-h
+i-j

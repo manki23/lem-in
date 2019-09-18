@@ -6,19 +6,11 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:27:37 by manki             #+#    #+#             */
-/*   Updated: 2019/09/09 12:46:28 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/17 11:47:53 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
-
-static	char	ft_cmd_stack_is_empty(t_all *map)
-{
-	if (map->command_stack == NULL)
-		return (1);
-	else
-		return (0);
-}
 
 static char		ft_stock_command(char *str, t_all **map)
 {
@@ -43,6 +35,29 @@ static char		ft_have_tube(t_room *room)
 	return (0);
 }
 
+static char		ft_start_and_end_there(t_all *map)
+{
+	t_room		*tmp;
+	char		end;
+	char		start;
+
+	end = 0;
+	start = 0;
+	tmp = map->room;
+	while (tmp)
+	{
+		if (tmp->command == CMD_START)
+			start++;
+		else if (tmp->command == CMD_END)
+			end++;
+		tmp = tmp->next;
+	}
+	if (start == 1 && end == 1)
+		return (1);
+	else
+		return (0);
+}
+
 char			ft_check_map(char *input, char line_id, t_all *map)
 {
 	if (line_id == NUMBER && map->ants < 0)
@@ -51,7 +66,7 @@ char			ft_check_map(char *input, char line_id, t_all *map)
 		return (ft_stock_room(input, &map->room, &map->command_stack));
 	else if (line_id == TUBE && map->ants > 0 && map->room != NULL)
 		return (ft_stock_tube(input, &map));
-	else if (line_id == COMMAND && ft_cmd_stack_is_empty(map))
+	else if (line_id == COMMAND && map->command_stack == NULL)
 		return (ft_stock_command(input, &map));
 	else if (line_id != COMMENT)
 		return (ERROR);
@@ -64,7 +79,7 @@ char			ft_map_enough_to_launch(t_all *map)
 
 	ret = 1;
 	if (map->ants <= 0 || ft_room_lstlen(map->room) < 2 ||
-			!ft_have_tube(map->room))
+			!ft_have_tube(map->room) || !ft_start_and_end_there(map))
 		ret = 0;
 	return (ret);
 }
