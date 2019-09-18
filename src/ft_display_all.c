@@ -12,7 +12,7 @@
 
 #include "../inc/lem_in.h"
 
-void	check_end(t_queue *display, int size)
+/*void	check_end(t_queue *display, int size)
 {
 	int i;
 
@@ -23,7 +23,7 @@ void	check_end(t_queue *display, int size)
 			display[i].room->command = FINISH;
 		i++;
 	}
-}
+}*/
 
 int		display_sol(t_queue *display, int c_ants, int size)
 {
