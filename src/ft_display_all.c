@@ -12,6 +12,99 @@
 
 #include "../inc/lem_in.h"
 
+void	check_end(t_queue *display, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (display[i].room->command == CMD_END)
+			display[i].room->command = FINISH;
+		i++;
+	}
+}
+
+int		display_sol(t_queue *display, int c_ants, int size)
+{
+	int i;
+	int j;
+
+	t_queue tmp;
+	j = 0;
+	i = 0;
+	int k = 0;
+	(void)tmp;
+	while (i < size)
+	{
+		ft_printf("display %d == %p", i, display[i]);
+		tmp = display[i];
+		while (j < 2)
+		{
+			ft_printf(" L%d-%s for %d ", c_ants, tmp.room->name, i);
+			if (j < 1)
+				tmp = *(tmp.next);
+			c_ants++;
+			j++;
+		}
+		j = 0;
+		tmp = display[i];
+		display[i].room[k] = *(tmp.room->child);
+		k++;
+		while (j < 2)
+		{
+			//ft_printf(" pointeur sur tmp room == %p\n", tmp);
+			//ft_printf("\nroom=>name == %s \n",tmp->room->name);
+			if (j < 1)
+				tmp = *(tmp.next);
+			display[i].room[k] = *(tmp.room->child);
+			k++;
+			//display[i].room = display[i].room->child;
+			//display[i] = *display[i].next;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	ft_printf("\n");
+	return (c_ants);
+}
+
+void	display(t_queue sol, int ants)
+{
+	int i;
+	t_queue	*display;
+	int c_ants;
+	(void)ants;
+
+	display = (t_queue *)malloc(sizeof(t_queue*) * ft_queue_len(&sol) + 1);
+	c_ants = 1;
+	i = 1;
+	display[0] = sol;
+	ft_printf("display 0 == %p || sol == %p\n", display[0], sol);
+	ft_printf("display->name == %s\n", display[0].room->name);
+	//display[1] = sol;
+	//ft_printf("display 1  == %p\n", display[1]);
+	//display[1] = NULL;
+	while (c_ants <= ants)
+	{
+		c_ants = display_sol(display, 1, i);
+		if (c_ants <= ants)
+		{
+			display[i] = sol;
+		//	ft_printf("SOL->name == %s || SOL->name->next %s\n", sol.room->name, sol.next->room->name);
+		//	ft_printf("display %d == %p || sol == %p\n", i, display[i], sol);
+		//	ft_printf("c_ants == %d\n", c_ants);
+			//display[i + 1] = NULL;
+			i++;
+		}
+	}
+	//while (check_end(display, i))
+	//{
+	//	c_ants = display_sol(display, 1, i + 1);
+	//}
+}
+
 void	ft_display_all(t_all *map)
 {
 	int		i;
