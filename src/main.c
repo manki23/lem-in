@@ -54,6 +54,8 @@ int				main(void)
 		ft_print_queue(solution);
 	}
 	if (solution)
+		display(*solution, all.ants);
+	if (solution)
 		ft_free_queue(&solution);
 	free_all(&all);
 	return (0);
