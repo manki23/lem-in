@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/09/16 14:44:15 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/18 13:37:43 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void		ft_bfs_run(t_queue **list, char *stop, t_all **map)
 	free(working_node);
 }
 
-static void		ft_bfs_algo(t_all **map)
+static char		ft_bfs_algo(t_all **map, unsigned long long tour)
 {
 	t_room		*start;
 	t_room		*end;
@@ -65,7 +65,12 @@ static void		ft_bfs_algo(t_all **map)
 			ft_put_child(&end, &start);
 	}
 	ft_free_queue(&list);
+	if (!end->parent && tour == 0)
+		return (0);
+	if (end->parent == start)
+		end->old_parent = end->parent;
 	end->parent = NULL;
+	return (1);
 }
 
 static void		ft_keep_going(int *k_g, t_queue **sol, int *s_cost, t_all *map)
@@ -97,16 +102,19 @@ static void		ft_keep_going(int *k_g, t_queue **sol, int *s_cost, t_all *map)
 
 t_queue			*ft_breadth_first_search(t_all *map)
 {
-	t_queue		*sol;
-	int			sol_cost;
-	int			keep_going;
+	t_queue				*sol;
+	int					sol_cost;
+	int					keep_going;
+	unsigned long long	tour;
 
 	sol = NULL;
 	sol_cost = INT_MAX;
 	keep_going = 1;
+	tour = 0;
 	while (keep_going)
 	{
-		ft_bfs_algo(&map);
+		if (!ft_bfs_algo(&map, tour))
+			return (NULL);
 		ft_check_duplicates(&map);
 		ft_clean_path(&map);
 		ft_stock_solution(&sol, &map);
@@ -114,6 +122,7 @@ t_queue			*ft_breadth_first_search(t_all *map)
 		if (keep_going)
 			ft_free_queue(&sol);
 		ft_reset_visit(&map);
+		tour++;
 	}
 	return (sol);
 }
