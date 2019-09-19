@@ -25,53 +25,119 @@
 	}
 }*/
 
-int		display_sol(t_queue **display, int c_ants, int size)
+t_room	*chose_display(t_queue *display, int size)
 {
+	t_queue *tmp_q;
 	int i;
-	t_queue *tmp;
 
 	i = 0;
-	while (i < size)
+	tmp_q = display;
+	while (tmp_q && i < size)
 	{
-		//ft_printf("display %d == %p", i, display[i]);
-		tmp = display[i];
-		ft_printf("display tmp == %p", tmp);
-		while (tmp)
-		{
-			ft_printf(" L%d-%s for %d ", c_ants, tmp->room->name, i);
-			tmp->room = tmp->room->child;
-			ft_printf("display tmp == %p", tmp);
-			tmp = tmp->next;
-			c_ants++;
-		}
+		tmp_q = tmp_q->next;
 		i++;
 	}
+	return(tmp_q->room);
+}
+
+void	chose_ants(int *ants, int c_ants, int size, t_queue *display)
+{
+	t_queue *tmp;
+	int worst;
+	int c;
+
+	c = 0;
+	worst = 0;
+	tmp = display;
+	while (tmp)
+	{
+		while (tmp->room)
+		{
+			tmp->room = tmp->child;
+			c++;
+		}
+		if (c >= worst)
+			worst = c;
+		tmp = tmp->next;
+	}
+}
+
+int		display_sol(t_queue *display, int c_ants)
+{
+	int i;
+	t_room **tmp;
+
+	i = 0;
+	int j;
+	j = 0;
+	tmp = (t_room **)malloc(sizeof(t_room *) * c_ants);
+	int *ants;
+	int k;
+	k = 0;
+	ants = malloc(sizeof(int*) * ft_queue_len(display));
+	chose_ants(ants, c_ants, ft_queue_len(display), display);
+	/*while (j <= 1)
+	{
+		while (i < ants[j])
+		{
+			tmp[k] = chose_display(display, i);
+			k++;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+	i = 0;
+	j = 0;
+	k = 0;
+	int o = 0;
+	int c = 0;
+	while (c <= 3)
+	{
+		while (k <= c)
+		{
+			while (o < ants[j])
+			{
+				ft_printf("%s ", tmp[i]->name);
+				tmp[i] = tmp[i]->child;
+				o++;
+				i++;
+			}
+			o = 0;
+			if (j <= 1)
+				j++;
+			k++;
+		}
+		ft_printf("\n");
+		k = 0;
+		c++;
+		i = 0;
+		j = 0;
+	}*/
 	ft_printf("\n");
 	return (c_ants);
 }
 
-void	display(t_queue **sol, int ants)
+void	display(t_queue *sol, int ants)
 {
 	int i;
-	t_queue	**display;
+	t_queue	*display;
 	int c_ants;
-
-	display = (t_queue **)malloc(sizeof(t_queue) * ft_queue_len(*sol) + 1);
+	(void)ants;
+	display = (t_queue *)malloc(sizeof(t_queue) * ft_queue_len(sol) + 1);
 	c_ants = 1;
 	i = 1;
-	display[0] = *sol;
-	display[1] = *sol;
 	ft_printf("sol == %p\n", sol);
 //	ft_printf("SOL->name == %s || SOL->name->next %s\n", sol.room->name, sol.next->room->name);
-	while (c_ants <= ants)
-	{
-		c_ants = display_sol(display, 1, i);
-		if (c_ants <= ants)
-		{
-			//ft_printf("SOL->name == %s || SOL->name->next %s\n", sol.room->name, sol.next->room->name);			ft_printf("display 0 == %p || sol == %p\n", display[1], sol);
-			i++;
-		}
-	}
+	//while (c_ants <= ants)
+	//{
+		c_ants = display_sol(sol, ants);
+	//	if (c_ants <= ants)
+	//	{
+			//ft_printf("SOL->name == %s || SOL->name->next %s\n", sol.room->name, sol.next->room->name);
+	//		i++;
+	//	}
+	//}
 	//while (check_end(display, i))
 	//{
 	//	c_ants = display_sol(display, 1, i + 1);
