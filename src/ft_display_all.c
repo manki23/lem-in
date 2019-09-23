@@ -12,18 +12,50 @@
 
 #include "../inc/lem_in.h"
 
-/*void	check_end(t_queue *display, int size)
+t_queue	*sort_sol(t_queue *display)
 {
 	int i;
+	t_queue *tmp;
+	t_queue *swap;
+	i = 0;
+	tmp = display;
+	swap = display->next->next;
+	display = display->next;
+	display->next = tmp;
+	display->next->next = swap;
+	ft_printf("tmp->room name == %p\n",swap);
+	tmp = display;
+	while (tmp)
+	{
+		if (tmp->next && (tmp->next->nodes < tmp->nodes))
+		{
+			
+		}
+		ft_printf("tmp->room name == %s\n",tmp->room->name);
+		tmp = tmp->next;
+	}
+	return (display);
+}
 
+int	check_end(t_room **room, int size)
+{
+	int i;
+	t_room **tmp;
+	int c;
+
+	c = 0;
+	tmp = room;
 	i = 0;
 	while (i < size)
 	{
-		if (display[i].room->command == CMD_END)
-			display[i].room->command = FINISH;
+		if (tmp[i])
+			c++;
 		i++;
 	}
-}*/
+	if (c > 0)
+		return -1;
+	return (1);
+}
 
 t_room	*chose_display(t_queue *display, int size)
 {
@@ -39,7 +71,10 @@ t_room	*chose_display(t_queue *display, int size)
 		tmp_q = tmp_q->next;
 		i++;
 	}
-	//ft_printf("chose == %s",tmp_q->room->name);
+	if (tmp_q->ants == 0)
+		return (NULL);
+	tmp_q->ants = tmp_q->ants - 1;
+	//ft_printf("room choice == %s\n",tmp_q->room->name);
 	return(tmp_q->room);
 }
 
@@ -55,7 +90,7 @@ int		calc_nodes(t_room *room)
 		tmp = tmp->child;
 		c++; 
 	}
-	//ft_printf("%d", c);
+	//ft_printf("c == %d\n", c);
 	return (c);
 }
 
@@ -74,7 +109,7 @@ int		total_ants(int *ants, int size)
 	return (res);
 }
 
-void	chose_ants(int *ants, int c_ants, int size, t_queue *display)
+t_queue	*chose_ants(int *ants, int c_ants, int size, t_queue *display)
 {
 	t_room *tmp;
 	t_queue *tmp_q;
@@ -86,23 +121,23 @@ void	chose_ants(int *ants, int c_ants, int size, t_queue *display)
 	int i = 0;
 	tmp_q = display;
 	tmp = tmp_q->room;
-	(void)ants;
-	(void)size;
-	(void)c_ants;
-	ft_printf("display == %d\n",ft_queue_len(display));
+
+	//ft_printf("display == %d\n",ft_queue_len(display));
 	while (i < ft_queue_len(display))
 	{
 		c = calc_nodes(tmp_q->room);
+		tmp_q->nodes = c;
 		if (c >= worst)
 			worst = c;
 		i++;
 		c = 0;
 		tmp_q = tmp_q->next;
 	}
+	//display = sort_sol(display);
 	tmp_q = display;
-	while (c < size)
+	while (tmp_q && c < size)
 	{
-		ants[c] = 1 + (calc_nodes(tmp_q->room) - worst);
+		ants[c] = 1 + (worst - calc_nodes(tmp_q->room));
 		tmp_q = tmp_q->next;
 		c++;
 	}
@@ -114,7 +149,15 @@ void	chose_ants(int *ants, int c_ants, int size, t_queue *display)
 		if (c >= size)
 			c = 0;
 	}
-	//ft_printf("ants 0 == %d && ants 1 == %d", ants[0], ants[1]);
+	tmp_q = display;
+	while (tmp_q)
+	{
+		tmp_q->ants = ants[c];
+		c++;
+		tmp_q = tmp_q->next;
+	}
+	//ft_printf("ants 0 == %d  && ants 1 == %d", ants[0], ants[1]);
+	return (display);
 }
 
 int		display_sol(t_queue *display, int c_ants)
@@ -128,54 +171,66 @@ int		display_sol(t_queue *display, int c_ants)
 	tmp = (t_room **)malloc(sizeof(t_room *) * c_ants);
 	int *ants;
 	int k;
+
 	k = 0;
 	ants = malloc(sizeof(int*) * ft_queue_len(display));
-	chose_ants(ants, c_ants, ft_queue_len(display), display);
-	ft_printf("nbr foiurmis == %d", ants[j]);
-	while (j < ft_queue_len(display))
+	display = chose_ants(ants, c_ants, ft_queue_len(display), display);
+	while (k < c_ants)
 	{
-		while (i < ants[j])
-		{
-			tmp[k] = chose_display(display, i);
+		if (i >= ft_queue_len(display))
+			i = 0;
+		tmp[k] = chose_display(display, i);
+		if (tmp[k])
 			k++;
-			i++;
-		}
-		i = 0;
-		j++;
+		i++;
 	}
 	i = 0;
 	j = 0;
 	k = 0;
+	int size = ft_queue_len(display);
 	int o = 0;
-	int c = 0;
-	/*while (c <= c_ants)
+	while (total_ants(ants, ft_queue_len(display)) > 0)
 	{
-		while (k < c)
+		while (o < size)
 		{
-			while (o <= k)
+			if (ants[j] > 0)
 			{
 				if (tmp[i])
 				{
-					//ft_printf("k == %d", k);
-					ft_printf("L%d-%s ", i + 1, tmp[i]->name);
-					if (k < ft_queue_len(display))
-						ft_printf(" ");
+					ft_printf("L%d-%s ", i + 1, tmp[i]->name, ants[j]);
 					tmp[i] = tmp[i]->child;
 				}
-				o++;
 				i++;
+				if (o >= size - ft_queue_len(display))
+						ants[j]--;
 			}
-			o = 0;
-			if (j < 1)
+			if (o >= size - ft_queue_len(display) && j < ft_queue_len(display) - 1)
 				j++;
-			k++;
+			o++;
 		}
 		ft_printf("\n");
-		k = 0;
-		c++;
 		i = 0;
+		size = size + ft_queue_len(display);
+		o = 0;
 		j = 0;
-	}*/
+	}
+	i = 0;
+	j = 0;
+	k = 0;
+	while (check_end(tmp, c_ants) == -1)
+	{
+		while (i < c_ants)
+		{
+			if (tmp[i])
+			{
+				ft_printf("L%d-%s ", i + 1, tmp[i]->name);
+				tmp[i] = tmp[i]->child;
+			}
+			i++;
+		}
+		ft_printf("\n");
+		i = 0;
+	}
 	return (c_ants);
 }
 
@@ -188,6 +243,7 @@ void	display(t_queue *sol, int ants)
 	display = (t_queue *)malloc(sizeof(t_queue) * ft_queue_len(sol) + 1);
 	c_ants = 1;
 	i = 1;
+		//sort_sol(sol);
 	c_ants = display_sol(sol, ants);
 }
 
