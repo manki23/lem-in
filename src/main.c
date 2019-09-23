@@ -70,13 +70,13 @@ int				main(void)
 	else
 		ft_error_bis(&all, "ERROR", 2, &input_list);
 	if (solution)
-		display(*solution, all.ants);
-	if (solution)
+		display(solution, all.ants);
+	/*if (solution)
 	{
 		ft_lstprint(input_list, '\n');
-		write(1, "\n", 1); d
+		write(1, "\n", 1);
 		ft_free_queue(&solution);
-	}
+	}*/
 	ft_lstdel_2(&input_list);
 	free_all(&all);
 	return (0);

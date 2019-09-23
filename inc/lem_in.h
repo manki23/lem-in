@@ -99,4 +99,5 @@ t_queue				*ft_breadth_first_search(t_all *map);
 
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
+void	display(t_queue *sol, int ants);
 #endif
