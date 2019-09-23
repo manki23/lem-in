@@ -54,6 +54,8 @@ typedef struct		s_all
 typedef struct		s_queue
 {
 	t_room			*room;
+	int				nodes;
+	int				ants;
 	struct s_queue	*next;
 }					t_queue;
 
@@ -99,5 +101,6 @@ t_queue				*ft_breadth_first_search(t_all *map);
 
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
-void	display(t_queue *sol, int ants);
+void				display(t_queue *sol, int ants);
+
 #endif
