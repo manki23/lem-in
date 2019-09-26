@@ -102,11 +102,11 @@ t_queue				*ft_breadth_first_search(t_all *map);
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
 void				display(t_queue *sol, int ants);
-int		calc_nodes(t_room *room);
+int					calc_nodes(t_room *room);
 int		total_ants(int *ants, int size);
 
-void sort_lst(t_queue **display);
-int				sort(t_queue *cpy, t_queue *before, t_queue *next
+t_queue *sort_lst(t_queue *display);
+int		sort(t_queue *cpy, t_queue *before, t_queue *next
 							, t_queue **first);
 void			set_next(t_queue **cpy, t_queue **before, t_queue **next);
 

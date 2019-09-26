@@ -22,16 +22,16 @@ int				sort(t_queue *cpy, t_queue *before, t_queue *next
 		if (cpy->nodes > cpy->next->nodes)
 		{
 			i = 1;
-           // ft_printf(RED" FDP JE SUIS LA "END_COLOR);
 			if (before == NULL)
             {
-                *first = next;
-                 //set_next(&cpy, &before, &next);
-              
+				first[0] = next;
+				cpy->next = next->next;
             }
             else
-                before->next = next;
-            set_next(&cpy, &before, &next);
+            {   
+				before->next = next;
+			}
+			set_next(&cpy, &before, &next);
 		}
 		else
 		{
@@ -43,19 +43,39 @@ int				sort(t_queue *cpy, t_queue *before, t_queue *next
 	return (i);
 }
 
-void    sort_lst(t_queue **display)
+void	print_queue(t_queue *queue)
+{
+	t_queue *tmp;
+
+	tmp = queue;
+	while (tmp)
+	{
+		ft_printf("room == %s\n",tmp->room->name);
+		tmp = tmp->next;
+	}
+}
+t_queue   *sort_lst(t_queue *display)
 {
 	t_queue    *cpy;
 	t_queue    *before;
 	t_queue    *next;
 	t_queue    **first;
 
-	first = display;
+	first = &display;
 	before = NULL;
-	cpy = *first;
+	cpy = display;
     next = cpy->next;
-    while (sort(cpy, before, next, first))
+	print_queue(display);
+	//*first = next;
+	//cpy->next = next->next;
+	//next->next = display;
+	//before = next;
+	//next = cpy->next;
+	while (sort(cpy, before, next, first))
         ;
+	print_queue(display);
+		ft_printf("display a == %s\n", display->room->name);
+    return (*first);
 }
 
 int		calc_nodes(t_room *room)

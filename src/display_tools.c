@@ -34,9 +34,12 @@ t_room	*chose_display(t_queue *display, int size)
 		tmp_q = tmp_q->next;
 		i++;
 	}
-	if (tmp_q->ants == 0)
-		return (NULL);
-	tmp_q->ants = tmp_q->ants - 1;
+	if (i < size)
+	{
+		if (tmp_q->ants == 0)
+			return (NULL);
+		tmp_q->ants = tmp_q->ants - 1;
+	}
 	return (tmp_q->room);
 }
 
@@ -79,7 +82,7 @@ void	chose_ants(int *ants, int c_ants, int size, t_queue **display)
 		i++;
 		tmp_q = tmp_q->next;
 	}
-	sort_lst(display);
+	*display = sort_lst(*display);
 	tmp_q = *display;
 	i = 0;
 	while (tmp_q && i < size)
