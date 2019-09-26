@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/16 14:15:02 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:22:02 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ t_queue				*ft_breadth_first_search(t_all *map);
 
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
-void				display(t_queue *sol, int ants);
-int					calc_nodes(t_room *room);
+void				display(t_queue **sol, int ants);
+int		calc_nodes(t_room *room);
+
 int		total_ants(int *ants, int size);
 
 t_queue *sort_lst(t_queue *display);

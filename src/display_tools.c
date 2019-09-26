@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_tools.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/26 11:12:35 by manki             #+#    #+#             */
+/*   Updated: 2019/09/26 11:59:46 by yodana           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/lem_in.h"
 
-int	check_end(t_room **room, int size)
+int		check_end(t_room **room, int size)
 {
-	int i;
-	t_room **tmp;
-	int c;
+	int		i;
+	t_room	**tmp;
+	int		c;
 
 	c = 0;
 	tmp = room;
@@ -16,14 +28,14 @@ int	check_end(t_room **room, int size)
 		i++;
 	}
 	if (c > 0)
-		return -1;
+		return (-1);
 	return (1);
 }
 
 t_room	*chose_display(t_queue *display, int size)
 {
-	t_queue *tmp_q;
-	int i;
+	t_queue	*tmp_q;
+	int		i;
 
 	i = 0;
 	tmp_q = display;
@@ -45,8 +57,8 @@ t_room	*chose_display(t_queue *display, int size)
 
 void	stock_ants_sol(int *ants, t_queue *display, int c_ants, int size)
 {
-	int c;
-	t_queue *tmp_q;
+	int		c;
+	t_queue	*tmp_q;
 
 	tmp_q = display;
 	c = 0;
@@ -68,9 +80,9 @@ void	stock_ants_sol(int *ants, t_queue *display, int c_ants, int size)
 
 void	chose_ants(int *ants, int c_ants, int size, t_queue **display)
 {
-	t_queue *tmp_q;
-	int i;
-	int worst;
+	t_queue	*tmp_q;
+	int		i;
+	int		worst;
 
 	worst = 0;
 	i = 0;
