@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/18 15:42:26 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:29:36 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				main(void)
 		ft_analyse_input(&input, &all, &end_input, &input_list);
 		if (!input_list && !end_input)
 			input_list = ft_lstnew(input, ft_strlen(input));
-		else
+		else if (!end_input)
 			ft_lsadd(&input_list, input, ft_strlen(input));
 		ft_strdel(&input);
 	}
@@ -73,7 +73,7 @@ int				main(void)
 	{
 		ft_lstprint(input_list, '\n');
 		write(1, "\n", 1);
-		display(solution, all.ants);
+		display(&solution, all.ants);
 		ft_free_queue(&solution);
 	}
 	ft_lstdel_2(&input_list);

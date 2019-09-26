@@ -15,7 +15,7 @@ int				sort(t_queue *cpy, t_queue *before, t_queue *next
 
 	i = 0;
 	before = NULL;
-	cpy = *first;
+	cpy = first[0];
 	next = cpy->next;
 	while (next)
 	{
@@ -25,7 +25,7 @@ int				sort(t_queue *cpy, t_queue *before, t_queue *next
            // ft_printf(RED" FDP JE SUIS LA "END_COLOR);
 			if (before == NULL)
             {
-                *first = next;
+                first[0] = next;
                  //set_next(&cpy, &before, &next);
               
             }

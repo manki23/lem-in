@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:35:59 by manki             #+#    #+#             */
-/*   Updated: 2019/09/18 12:56:40 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:28:12 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	sol_one_queue(t_queue *sol)
 	return (0);
 }
 
-void	display_sol(t_queue *display, int c_ants)
+void	display_sol(t_queue **display, int c_ants)
 {
 	int i;
 	t_room **tmp;
@@ -78,10 +78,10 @@ void	display_sol(t_queue *display, int c_ants)
 	print = 0;
 	i = 0;
 	tmp = (t_room **)malloc(sizeof(t_room *) * (c_ants + 1));
-	ants = malloc(sizeof(int*) * ft_queue_len(display));
-	chose_ants(ants, c_ants, ft_queue_len(display), &display);
-	stock_room_sol(tmp, display, c_ants);
-	first_display(ants, display, tmp, c_ants);
+	ants = malloc(sizeof(int*) * ft_queue_len(display[0]));
+	chose_ants(ants, c_ants, ft_queue_len(display[0]), &display[0]);
+	stock_room_sol(tmp, display[0], c_ants);
+	first_display(ants, display[0], tmp, c_ants);
 	while (check_end(tmp, c_ants) == -1)
 	{
 		while (i < c_ants)
@@ -101,16 +101,16 @@ void	display_sol(t_queue *display, int c_ants)
 	free(ants);
 }
 
-void	display(t_queue *sol, int ants)
+void	display(t_queue **sol, int ants)
 {
 	int i;
 
 	i = 1;
-	if (sol_one_queue(sol) == 1)
+	if (sol_one_queue(sol[0]) == 1)
 	{
 		while (i <= ants)
 		{
-			ft_printf("L%d-%s", i + 1, sol->room->name);
+			ft_printf("L%d-%s", i + 1, sol[0]->room->name);
 			if (i < ants)
 				ft_printf(" ");
 			i++;

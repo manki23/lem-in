@@ -11,10 +11,10 @@ F 6 7
 ##new command
 h 7 8
 i 8 9
+##end
 j 10 11
 k 9 10
 l 11 12
-##end
 B 13 13
 x 13 14
 A-B
@@ -32,3 +32,6 @@ F-i
 h-i
 D-h
 i-j
+rrr
+
+ooo
