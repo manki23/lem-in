@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/09/18 13:37:43 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:50:46 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void		ft_keep_going(int *k_g, t_queue **sol, int *s_cost, t_all *map)
 	t_room		*tmp;
 
 	k_g[0] = 0;
-	i  = ft_cost_computation(&map, sol);
+	i = ft_cost_computation(&map, sol);
 	if (i < s_cost[0])
 	{
 		s_cost[0] = i;

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 12:09:23 by manki             #+#    #+#             */
-/*   Updated: 2019/09/18 14:21:54 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/26 12:17:21 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		ft_is_room(char *str)
 
 	i = 0;
 	ok = 0;
-	while (str[i] && str[i] != ' ' && ft_isprint(str[i]))
+	while (str[i] && str[i] != ' ' && ft_isprint(str[i]) && str[i] != '-')
 		i++;
 	ft_coord(str, &i, &ok);
 	ft_coord(str, &i, &ok);

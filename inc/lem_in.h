@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/26 11:22:02 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/26 11:50:16 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,18 @@ t_queue				*ft_breadth_first_search(t_all *map);
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
 void				display(t_queue **sol, int ants);
-int		calc_nodes(t_room *room);
-int		total_ants(int *ants, int size);
+int					calc_nodes(t_room *room);
+int					total_ants(int *ants, int size);
 
-void sort_lst(t_queue **display);
-int				sort(t_queue *cpy, t_queue *before, t_queue *next
+void				sort_lst(t_queue **display);
+int					sort(t_queue *cpy, t_queue *before, t_queue *next
 							, t_queue **first);
-void			set_next(t_queue **cpy, t_queue **before, t_queue **next);
+void				set_next(t_queue **cpy, t_queue **before, t_queue **next);
 
-t_room	*chose_display(t_queue *display, int size);
-void	stock_ants_sol(int *ants, t_queue *display, int c_ants, int size);
-void	chose_ants(int *ants, int c_ants, int size, t_queue **display);
-void	stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
-int	check_end(t_room **room, int size);
+t_room				*chose_display(t_queue *display, int size);
+void				stock_ants_sol(int *ants, t_queue *disp, int c_ants, int s);
+void				chose_ants(int *ants, int c_ants, int size, t_queue **disp);
+void				stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
+int					check_end(t_room **room, int size);
 
 #endif

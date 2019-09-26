@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/26 11:29:36 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/26 12:08:52 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,40 @@ static void		ft_init_all_struct(t_all *all)
 	all->ants = -1;
 }
 
-static void		ft_analyse_input(char **input, t_all *all, char *end_input, t_list **list)
+static char		ft_analyse_input(char **input, t_all *all, t_list **list)
 {
+	char		end_input;
+
+	end_input = 0;
 	if (!ft_check_map(*input, ft_check_line(*input), all))
 	{
 		if (ft_map_enough_to_launch(all))
-			end_input[0] = 1;
+			end_input = 1;
 		else
 		{
 			ft_strdel(input);
 			ft_error_bis(all, "ERROR", 2, list);
 		}
 	}
+	if (!list && !list[0] && !end_input)
+		list[0] = ft_lstnew(input[0], ft_strlen(input[0]));
+	else if (!end_input)
+		ft_lsadd(list, input[0], ft_strlen(input[0]));
+	ft_strdel(input);
+	return (end_input);
+}
+
+static void		ft_get_and_display_solution(t_queue **so, t_list **in, t_all *a)
+{
+	if (so && so[0])
+	{
+		ft_lstprint(*in, '\n');
+		write(1, "\n", 1);
+		display(so, a->ants);
+		ft_free_queue(so);
+	}
+	ft_lstdel_2(in);
+	free_all(a);
 }
 
 int				main(void)
@@ -54,14 +76,7 @@ int				main(void)
 	solution = NULL;
 	input_list = NULL;
 	while (!end_input && get_next_line(0, &input) == 1)
-	{
-		ft_analyse_input(&input, &all, &end_input, &input_list);
-		if (!input_list && !end_input)
-			input_list = ft_lstnew(input, ft_strlen(input));
-		else if (!end_input)
-			ft_lsadd(&input_list, input, ft_strlen(input));
-		ft_strdel(&input);
-	}
+		end_input = ft_analyse_input(&input, &all, &input_list);
 	if (ft_map_enough_to_launch(&all))
 	{
 		if (!(solution = ft_breadth_first_search(&all)))
@@ -69,14 +84,6 @@ int				main(void)
 	}
 	else
 		ft_error_bis(&all, "ERROR", 2, &input_list);
-	if (solution)
-	{
-		ft_lstprint(input_list, '\n');
-		write(1, "\n", 1);
-		display(&solution, all.ants);
-		ft_free_queue(&solution);
-	}
-	ft_lstdel_2(&input_list);
-	free_all(&all);
+	ft_get_and_display_solution(&solution, &input_list, &all);
 	return (0);
 }

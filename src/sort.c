@@ -27,7 +27,6 @@ int				sort(t_queue *cpy, t_queue *before, t_queue *next
             {
                 first[0] = next;
                  //set_next(&cpy, &before, &next);
-              
             }
             else
                 before->next = next;
