@@ -45,7 +45,7 @@ void	first_display(int *ants, t_queue *display, t_room **tmp, int c_ants)
 				if (tmp[i])
 					print = 1;
 				print_sol(tmp, i);
-				i < c_ants - 1 ? i++ : i;
+				i < c_ants ? i++ : i;
 				o >= size - ft_queue_len(display) ? ants[j]-- : ants[j];
 			}
 			if (o >= size - ft_queue_len(display) && j < ft_queue_len(display) - 1)
