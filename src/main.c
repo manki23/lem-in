@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/26 12:08:52 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/29 16:18:26 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void		ft_error_bis(t_all *all, char str[], char fd, t_list **list)
 static void		ft_init_all_struct(t_all *all)
 {
 	all->room = NULL;
+	all->args = ft_memalloc(ARGS_NUMBER);
 	all->command_stack = NULL;
 	all->ants = -1;
 }
@@ -72,6 +73,7 @@ int				main(void)
 	t_queue		*solution;
 
 	ft_init_all_struct(&all);
+//	ft_check_arg(ac, av, &all);
 	end_input = 0;
 	solution = NULL;
 	input_list = NULL;

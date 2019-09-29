@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/09/26 12:26:36 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/29 15:54:31 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 
 # include "../libft/libft.h"
 # include "limits.h"
+
+# define _GREY "\033[30m"
+# define _RED "\033[31m"
+# define _GREEN "\033[32m"
+# define _YELLOW "\033[33m"
+# define _BLUE "\033[34m"
+# define _PURPLE "\033[35m"
+# define _CYAN "\033[36m"
+# define _WHITE "\033[37m"
+# define _END "\033[0m"
+
+# define ARGS_NUMBER 2
 
 enum	{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
 
@@ -46,6 +58,7 @@ typedef struct		s_room
 typedef struct		s_all
 {
 	int				ants;
+	char			*args;
 	char			*command_stack;
 	t_room			*room;
 
@@ -117,5 +130,7 @@ void				stock_ants_sol(int *ants, t_queue *dis, int c_ants, int s);
 void				chose_ants(int *ants, int c_ants, int size, t_queue **disp);
 void				stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
 int					check_end(t_room **room, int size);
+
+void				ft_check_arg(int ac, char *av[], t_all *all);
 
 #endif
