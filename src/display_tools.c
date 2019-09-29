@@ -122,4 +122,5 @@ void	stock_room_sol(t_room **tmp, t_queue *display, int c_ants)
 			k++;
 		i++;
 	}
+	tmp[k] = NULL;
 }
