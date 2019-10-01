@@ -12,35 +12,33 @@
 
 #include "../inc/lem_in.h"
 
-static void		ft_print_usage(t_all **all)
+void		ft_print_usage(t_all **all)
 {
-	ft_putendl("Usage:\t./lem-in [-vc] <map>\n");
+	ft_putendl("Usage:\t./lem-in [-vcl] <map>\n");
 	ft_putendl("\t-v, --visu-hex\t\tto use visu-hex.py visualizer");
 	ft_putendl("\t-c, --color\t\t\tto see output with colors");
-	free_all(all[0]);
+	ft_putendl("\t-l, \t\t\tto see the numbers of turns");
+	if (all != NULL)
+		free_all(all[0]);
 	exit(-2);
 }
 
 static char		ft_check_one(char arg[], t_all **all)
 {
-		ft_putendl("X");
-		ft_putendl(arg);
-	if (!all[0]->args[0] && (!ft_strcmp(arg, "-v")
-				|| !ft_strcmp(arg, "--visu-hex")))
-		all[0]->args[0] = 1;
-	else if (!all[0]->args[1] && (!ft_strcmp(arg, "-c")
-				|| !ft_strcmp(arg, "--color")))
-		all[0]->args[1] = 1;
-	else if (!all[0]->args[1] && !all[0]->args[0]  && (!ft_strcmp(arg, "-vc")
-				|| !ft_strcmp(arg, "-cv")))
+	int i;
+
+	i = 0;
+	while (arg[i])
 	{
-		all[0]->args[0] = 1;
-		all[0]->args[1] = 1;
-	}
-	else
-	{
-		ft_print_usage(all);
-		return (0);
+		if (arg[i] == 'v')
+			all[0]->args[0] = 1;
+		else if (arg[i] == 'c')
+			all[0]->args[1] = 1;
+		else if (arg[i] == 'l')
+			all[0]->args[2] = 1;
+		else 
+			ft_print_usage(all);
+		i++;
 	}
 	return (1);
 }
@@ -51,11 +49,15 @@ void			ft_check_arg(int ac, char *av[], t_all *all)
 	int		i;
 
 	ac++;
-	av--;
 	if (ac > 2)
 	{
-		i = -1;
-		while (++i < ac - 2)
-			ft_check_one(av[i], &all);
+		i = 0;
+		while (av[++i] && av[i][0] == '-')
+		{
+			if (av[i][0] == '-' && av[i][1])
+				ft_check_one(&av[i][1], &all);
+			else if (av[i][0] == '-')
+				ft_print_usage(&all);
+		}
 	}
 }

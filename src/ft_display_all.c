@@ -28,6 +28,8 @@ int		first_display_check(int o, int size, t_room **tmp, t_queue *d)
 	if (o < size && tmp[0] && d->print == 1)
 		ft_printf(" ");
 	tmp[0] ? d->print = 1 : d->print;
+	if (o == 0)
+		d->c_t++;
 	return (1);
 }
 
@@ -81,6 +83,7 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 			tmp[i] ? print = 1 : print;
 			print_sol(tmp, &i, i - 1);
 		}
+		display[0]->c_t++;
 		print = 0;
 		ft_printf("\n");
 		i = -1;
@@ -95,6 +98,7 @@ void	display(t_queue **sol, int ants)
 
 	i = 1;
 	sol[0]->print = 0;
+	sol[0]->c_t = 0;
 	if (ft_queue_len(*sol) == 1 && calc_nodes((*sol)->room) == 1)
 	{
 		while (i <= ants)
@@ -105,6 +109,7 @@ void	display(t_queue **sol, int ants)
 			i++;
 		}
 		ft_printf("\n");
+		sol[0]->c_t++;
 	}
 	else
 		display_sol(sol, ants, -1, 0);

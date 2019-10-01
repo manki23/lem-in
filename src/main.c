@@ -58,13 +58,15 @@ static void		ft_get_and_display_solution(t_queue **so, t_list **in, t_all *a)
 		ft_lstprint(*in, '\n');
 		write(1, "\n", 1);
 		display(so, a->ants);
+		if (a->args[2] == 1)
+			ft_printf("Nombre de tours == %d\n", so[0]->c_t);
 		ft_free_queue(so);
 	}
 	ft_lstdel_2(in);
 	free_all(a);
 }
 
-int				main(void)
+int				main(int ac, char **av)
 {
 	char		*input;
 	t_list		*input_list;
@@ -73,7 +75,7 @@ int				main(void)
 	t_queue		*solution;
 
 	ft_init_all_struct(&all);
-//	ft_check_arg(ac, av, &all);
+	ft_check_arg(ac, av, &all);
 	end_input = 0;
 	solution = NULL;
 	input_list = NULL;
