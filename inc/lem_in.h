@@ -26,7 +26,7 @@
 # define _WHITE "\033[37m"
 # define _END "\033[0m"
 
-# define ARGS_NUMBER 2
+# define ARGS_NUMBER 3
 
 enum	{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
 
@@ -68,6 +68,7 @@ typedef struct		s_queue
 {
 	t_room			*room;
 	int				nodes;
+	int				c_t;
 	int				ants;
 	int				print;
 	struct s_queue	*next;
@@ -132,5 +133,5 @@ void				stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
 int					check_end(t_room **room, int size);
 
 void				ft_check_arg(int ac, char *av[], t_all *all);
-
+void				ft_print_usage(t_all **all);
 #endif
