@@ -15,7 +15,8 @@
 static void		ft_one_backtrack(t_room **room, t_queue **list, int i)
 {
 	room[0]->tab[i]->child = room[0]->tab[i]->old_parent;
-	ft_enqueue(list, &room[0]->tab[i]->child);
+	if (room[0]->tab[i]->child->visit == 0)
+		ft_enqueue(list, &room[0]->tab[i]->child);
 	room[0]->tab[i]->child->parent = room[0]->tab[i];
 	room[0]->tab[i]->parent = room[0];
 	room[0]->child = room[0]->tab[i];
@@ -40,7 +41,7 @@ static void		ft_bfs_run(t_queue **list, char *stop, t_all **map)
 		else if (working_node->room->tab[i]->visit == 0 &&
 				working_node->room->tab[i]->child != NULL &&
 				!ft_another_path_exist(working_node->room->tab))
-			ft_one_backtrack(&working_node->room, list, i);
+				ft_one_backtrack(&working_node->room, list, i);
 	}
 	free(working_node);
 }
