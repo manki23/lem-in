@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/09/17 15:30:04 by manki            ###   ########.fr       */
+/*   Updated: 2019/09/30 12:43:01 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void			ft_reset_visit(t_all **map)
 	}
 }
 
-void			ft_put_child(t_room **room, t_room **start)
+void			ft_put_child(t_room **end, t_room **start)
 {
 	t_room	*tmp;
 
-	tmp = room[0];
+	tmp = end[0];
 	while (tmp && tmp->parent && tmp->parent != start[0])
 	{
 		tmp->parent->child = tmp;
 		tmp = tmp->parent;
 	}
-	if (tmp->parent == start[0] && tmp == room[0])
+	if (tmp->parent == start[0] && tmp == end[0])
 		tmp->parent->child = tmp;
 }
 
