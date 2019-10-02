@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/10/02 11:09:23 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/02 12:05:20 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,25 @@ static char		ft_end_is_a_child(t_room *room, t_room *end)
 	{
 		if (tmp == end)
 			return (1);
+		if (tmp->child && tmp->child != end && tmp->child->parent != tmp)
+			return (0);
 		tmp = tmp->child;
+	}
+	return (0);
+}
+
+static char		ft_start_is_a_parent(t_room *room, t_room *start)
+{
+	t_room	*tmp;
+
+	tmp = room;
+	while (tmp)
+	{
+		if (tmp == start)
+			return (1);
+		if (tmp->parent && tmp->parent != start && tmp->parent->child != tmp)
+			return (0);
+		tmp = tmp->parent;
 	}
 	return (0);
 }
@@ -30,13 +48,16 @@ void			ft_clean_path(t_all **map)
 {
 	t_room	*tmp;
 	t_room	*end;
+	t_room	*start;
 
 	end = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
 				CMD_END));
+	start = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
+				CMD_START));
 	tmp = map[0]->room;
 	while (tmp)
 	{
-		if (!ft_end_is_a_child(tmp, end))
+		if (!ft_end_is_a_child(tmp, end) || !ft_start_is_a_parent(tmp, start))
 		{
 			tmp->parent = tmp->old_parent;
 			tmp->child = tmp->old_child;
@@ -91,8 +112,7 @@ void			ft_put_child(t_all **map, t_room **end, t_room **start)
 	i = -1;
 	while (tmp && tmp->tab && tmp->tab[++i])
 	{
-		if (tmp->tab[i]->parent && tmp->tab[i]->parent != start[0]
-				&& !tmp->tab[i]->child)
+		if (tmp->tab[i]->parent && !tmp->tab[i]->child)
 			ft_forget_this_path(&tmp->tab[i], start, map);
 	}
 }
