@@ -90,6 +90,7 @@ int			total_ants(int *ants, int size)
 	while (i < size)
 	{
 		res = res + ants[i];
+		//ft_printf("ants[%d] == %d\n", i, ants[i]);
 		i++;
 	}
 	return (res);
