@@ -66,13 +66,11 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 {
 	t_room	**tmp;
 	int		*ants;
-
 	if (!(tmp = (t_room **)malloc(sizeof(t_room *) * (c_ants + 1))))
 		return ;
 	if (!(ants = malloc(sizeof(int*) * ft_queue_len(display[0]))))
 		return ;
 	chose_ants(ants, c_ants, ft_queue_len(display[0]), &display[0]);
-	ft_putendl("X");
 	stock_room_sol(tmp, display[0], c_ants);
 	first_display(ants, display[0], tmp, c_ants);
 	while (check_end(tmp, c_ants) == -1 && 	display[0]->c_t++)

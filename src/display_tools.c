@@ -62,7 +62,7 @@ void	stock_ants_sol(int *ants, t_queue *display, int c_ants, int size)
 
 	tmp_q = display;
 	c = 0;
-	while (total_ants(ants, ft_queue_len(display)) != c_ants)
+	while (total_ants(ants, ft_queue_len(display)) <= c_ants)
 	{
 		ants[c]++;
 		c++;
