@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:47 by manki             #+#    #+#             */
-/*   Updated: 2019/09/18 13:38:25 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/01 18:17:18 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ void	ft_stock_solution(t_queue **sol, t_all **map)
 		ft_enqueue(sol, &start);
 }
 
-int		ft_another_path_exist(t_room **room)
+int		ft_another_path_exist(t_all *map, t_room **room)
 {
+	t_room	*start;
 	int		i;
 
+	start = ft_get_room(&map->room, ft_get_room_pos_by_cmd(map->room,
+				CMD_START));
 	i = -1;
 	while (room[++i])
-		if (room[i]->visit == 0 && room[i]->child == NULL)
+		if (room[i]->visit == 0 && room[i]->child == NULL && room[i] != start)
 			return (1);
 	return (0);
 }

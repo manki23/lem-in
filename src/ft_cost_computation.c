@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:23 by manki             #+#    #+#             */
-/*   Updated: 2019/09/17 15:49:45 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/02 11:10:18 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int		ft_divide_remaining_ants(int **tab, int **nb, int len, int *ant)
 	int		i;
 	int		rest;
 
-	if (ant[0] > 0)
+	if (len > 0 && ant[0] > 0)
 	{
 		rest = ant[0] / len;
 		i = -1;
@@ -68,9 +68,11 @@ static int		ft_divide_remaining_ants(int **tab, int **nb, int len, int *ant)
 		}
 	}
 	i = len;
-	while (nb[0][i - 1] == 0)
+	while (len > 0 && nb[0][i - 1] == 0)
 		i--;
-	return (tab[0][i - 1] + nb[0][i - 1] - 1);
+	if (len > 0)
+		return (tab[0][i - 1] + nb[0][i - 1] - 1);
+	return (INT_MAX);
 }
 
 int				ft_cost_computation(t_all **map, t_queue **sol)

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/09/29 16:18:26 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/02 12:21:25 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void		ft_get_and_display_solution(t_queue **so, t_list **in, t_all *a)
 		write(1, "\n", 1);
 		display(so, a->ants);
 		if (a->args[2] == 1)
-			ft_printf("Nombre de tours == %d\n", so[0]->c_t);
+			ft_printf("Number of lines == %d\n", so[0]->c_t);
 		ft_free_queue(so);
 	}
 	ft_lstdel_2(in);
@@ -84,7 +84,11 @@ int				main(int ac, char **av)
 	if (ft_map_enough_to_launch(&all))
 	{
 		if (!(solution = ft_breadth_first_search(&all)))
+		{
+			if (input)
+				ft_strdel(&input);
 			ft_error_bis(&all, "ERROR", 2, &input_list);
+		}
 	}
 	else
 		ft_error_bis(&all, "ERROR", 2, &input_list);

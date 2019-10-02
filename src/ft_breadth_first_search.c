@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/09/26 11:50:46 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/02 12:15:02 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void		ft_bfs_run(t_queue **list, char *stop, t_all **map)
 			ft_enqueue(list, &working_node->room->tab[i]);
 		else if (working_node->room->tab[i]->visit == 0 &&
 				working_node->room->tab[i]->child != NULL &&
-				!ft_another_path_exist(working_node->room->tab))
+				!ft_another_path_exist(map[0], working_node->room->tab))
 				ft_one_backtrack(&working_node->room, list, i);
 	}
 	free(working_node);
@@ -60,11 +60,9 @@ static char		ft_bfs_algo(t_all **map, unsigned long long tour)
 	list = ft_create_queue(&start);
 	stop = 0;
 	while (!stop && list)
-	{
 		ft_bfs_run(&list, &stop, map);
-		if (stop)
-			ft_put_child(&end, &start);
-	}
+	if (stop || !list)
+		ft_put_child(map, &end, &start);
 	ft_free_queue(&list);
 	if (!end->parent && tour == 0)
 		return (0);
@@ -116,13 +114,13 @@ t_queue			*ft_breadth_first_search(t_all *map)
 	{
 		if (!ft_bfs_algo(&map, tour))
 			return (NULL);
+		ft_reset_visit(&map);
 		ft_check_duplicates(&map);
 		ft_clean_path(&map);
 		ft_stock_solution(&sol, &map);
 		ft_keep_going(&keep_going, &sol, &sol_cost, map);
 		if (keep_going)
 			ft_free_queue(&sol);
-		ft_reset_visit(&map);
 		tour++;
 	}
 	return (sol);
