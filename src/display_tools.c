@@ -46,12 +46,9 @@ t_room	*chose_display(t_queue *display, int size)
 		tmp_q = tmp_q->next;
 		i++;
 	}
-	//if (i < size)
-	//{
-		if (tmp_q->ants == 0)
-			return (NULL);
-		tmp_q->ants = tmp_q->ants - 1;
-	//}
+	if (tmp_q->ants == 0)
+		return (NULL);
+	tmp_q->ants = tmp_q->ants - 1;
 	return (tmp_q->room);
 }
 
@@ -69,6 +66,7 @@ void	stock_ants_sol(int *ants, t_queue *display, int c_ants, int size)
 		if (c >= size)
 			c = 0;
 	}
+	c = 0;
 	tmp_q = display;
 	while (tmp_q)
 	{
