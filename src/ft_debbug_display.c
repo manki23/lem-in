@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 11:07:11 by manki             #+#    #+#             */
-/*   Updated: 2019/10/01 15:58:13 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/02 10:18:54 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,31 @@ void		ft_print_room_ptr(t_room *room)
 		tmp = tmp->next;
 	}
 	ft_putendl("***********************************");
+}
+
+void		ft_print_solutions(t_queue *list)
+{
+	t_queue		*tmp;
+	t_room		*tmp2;
+	int			i;
+
+	tmp = list;
+	i = 0;
+	while (tmp && ++i)
+	{
+		ft_printf("solution [%d]:", i);
+		tmp2 = tmp->room;
+		while (tmp2)
+		{
+			ft_printf(" %s", tmp2->name);
+			if (tmp2->child)
+				ft_printf(" ->");
+			tmp2 = tmp2->child;
+		}
+		ft_putendl("");
+		tmp = tmp->next;
+	}
+
 }
 
 void		ft_print_queue(t_queue *list)
