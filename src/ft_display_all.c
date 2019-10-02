@@ -74,7 +74,7 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 	chose_ants(ants, c_ants, ft_queue_len(display[0]), &display[0]);
 	stock_room_sol(tmp, display[0], c_ants);
 	first_display(ants, display[0], tmp, c_ants);
-	while (check_end(tmp, c_ants) == -1)
+	while (check_end(tmp, c_ants) == -1 && 	display[0]->c_t++)
 	{
 		while (++i < c_ants)
 		{
@@ -83,7 +83,6 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 			tmp[i] ? print = 1 : print;
 			print_sol(tmp, &i, i - 1);
 		}
-		display[0]->c_t++;
 		print = 0;
 		ft_printf("\n");
 		i = -1;
