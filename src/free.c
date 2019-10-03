@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:26:17 by manki             #+#    #+#             */
-/*   Updated: 2019/09/29 15:50:28 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:03:50 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,8 @@ void			free_all(t_all *all)
 	}
 	ft_strdel(&all->args);
 	ft_strdel(&all->command_stack);
+	if (all->path_cost)
+		free(all->path_cost);
+	if (all->ant_nb)
+		free(all->ant_nb);
 }

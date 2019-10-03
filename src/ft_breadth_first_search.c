@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/10/02 12:15:02 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:22:17 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		ft_bfs_run(t_queue **list, char *stop, t_all **map)
 		else if (working_node->room->tab[i]->visit == 0 &&
 				working_node->room->tab[i]->child != NULL &&
 				!ft_another_path_exist(map[0], working_node->room->tab))
-				ft_one_backtrack(&working_node->room, list, i);
+			ft_one_backtrack(&working_node->room, list, i);
 	}
 	free(working_node);
 }

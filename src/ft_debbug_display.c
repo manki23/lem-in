@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 11:07:11 by manki             #+#    #+#             */
-/*   Updated: 2019/10/02 10:18:54 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:22:51 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void		ft_print_solutions(t_queue *list)
 		ft_putendl("");
 		tmp = tmp->next;
 	}
-
 }
 
 void		ft_print_queue(t_queue *list)

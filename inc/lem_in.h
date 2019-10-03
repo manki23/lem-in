@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/10/02 10:19:45 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:16:50 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct		s_all
 	char			*args;
 	char			*command_stack;
 	t_room			*room;
+	int				*path_cost;
+	int				*ant_nb;
 
 }					t_all;
 
@@ -134,5 +136,5 @@ void				stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
 int					check_end(t_room **room, int size);
 
 void				ft_check_arg(int ac, char *av[], t_all *all);
-void				ft_print_usage(t_all **all);
+
 #endif

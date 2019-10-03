@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/02 12:30:37 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:24:31 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 {
 	t_room	**tmp;
 	int		*ants;
+
 	if (!(tmp = (t_room **)malloc(sizeof(t_room *) * (c_ants + 1))))
 		return ;
 	if (!(ants = malloc(sizeof(int*) * ft_queue_len(display[0]))))
@@ -73,7 +74,7 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 	chose_ants(ants, c_ants, ft_queue_len(display[0]), &display[0]);
 	stock_room_sol(tmp, display[0], c_ants);
 	first_display(ants, display[0], tmp, c_ants);
-	while (check_end(tmp, c_ants) == -1 && 	display[0]->c_t++)
+	while (check_end(tmp, c_ants) == -1 && display[0]->c_t++)
 	{
 		while (++i < c_ants)
 		{

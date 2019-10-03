@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/10/02 12:21:25 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:15:05 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,17 @@ static void		ft_error_bis(t_all *all, char str[], char fd, t_list **list)
 	ft_error(str, fd);
 }
 
-static void		ft_init_all_struct(t_all *all)
+static void		ft_init(t_all *all, char *end, t_queue **sol, t_list **list)
 {
 	all->room = NULL;
 	all->args = ft_memalloc(ARGS_NUMBER);
 	all->command_stack = NULL;
 	all->ants = -1;
+	all->path_cost = NULL;
+	all->ant_nb = NULL;
+	end[0] = 0;
+	sol[0] = NULL;
+	list[0] = NULL;
 }
 
 static char		ft_analyse_input(char **input, t_all *all, t_list **list)
@@ -74,11 +79,8 @@ int				main(int ac, char **av)
 	char		end_input;
 	t_queue		*solution;
 
-	ft_init_all_struct(&all);
+	ft_init(&all, &end_input, &solution, &input_list);
 	ft_check_arg(ac, av, &all);
-	end_input = 0;
-	solution = NULL;
-	input_list = NULL;
 	while (!end_input && get_next_line(0, &input) == 1)
 		end_input = ft_analyse_input(&input, &all, &input_list);
 	if (ft_map_enough_to_launch(&all))

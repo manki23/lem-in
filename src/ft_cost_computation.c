@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:23 by manki             #+#    #+#             */
-/*   Updated: 2019/10/02 11:10:18 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:24:15 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		ft_first_ants(int len, int *ants, int **tab, int **ant_nb)
 	}
 }
 
-static int		ft_divide_remaining_ants(int **tab, int **nb, int len, int *ant)
+static int		ft_divide_ants_rest(int **tab, int **nb, int len, int *ant)
 {
 	int		i;
 	int		rest;
@@ -70,6 +70,8 @@ static int		ft_divide_remaining_ants(int **tab, int **nb, int len, int *ant)
 	i = len;
 	while (len > 0 && nb[0][i - 1] == 0)
 		i--;
+	while ((i - 1) > 0 && tab[0][i - 1] == tab[0][i - 1 - 1])
+		i--;
 	if (len > 0)
 		return (tab[0][i - 1] + nb[0][i - 1] - 1);
 	return (INT_MAX);
@@ -77,7 +79,6 @@ static int		ft_divide_remaining_ants(int **tab, int **nb, int len, int *ant)
 
 int				ft_cost_computation(t_all **map, t_queue **sol)
 {
-	int		*path_cost_tab;
 	int		*ant_nb;
 	int		len;
 	int		ants;
@@ -85,12 +86,10 @@ int				ft_cost_computation(t_all **map, t_queue **sol)
 
 	ants = map[0]->ants;
 	len = ft_queue_len(*sol);
-	path_cost_tab = (int *)malloc(sizeof(int) * len);
+	map[0]->path_cost = (int *)malloc(sizeof(int) * len);
 	ant_nb = (int *)malloc(sizeof(int) * len);
-	ft_initialize_tab(&path_cost_tab, &ant_nb, sol, len);
-	ft_first_ants(len, &ants, &path_cost_tab, &ant_nb);
-	final_cost = ft_divide_remaining_ants(&path_cost_tab, &ant_nb, len, &ants);
-	free(path_cost_tab);
-	free(ant_nb);
+	ft_initialize_tab(&map[0]->path_cost, &ant_nb, sol, len);
+	ft_first_ants(len, &ants, &map[0]->path_cost, &ant_nb);
+	final_cost = ft_divide_ants_rest(&map[0]->path_cost, &ant_nb, len, &ants);
 	return (final_cost);
 }

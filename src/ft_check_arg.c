@@ -6,18 +6,18 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:53:36 by manki             #+#    #+#             */
-/*   Updated: 2019/09/29 16:04:07 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 14:18:56 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void		ft_print_usage(t_all **all)
+static void		ft_print_usage(t_all **all)
 {
 	ft_putendl("Usage:\t./lem-in [-vcl] <map>\n");
-	ft_putendl("\t-v, --visu-hex\t\tto use visu-hex.py visualizer");
-	ft_putendl("\t-c, --color\t\t\tto see output with colors");
-	ft_putendl("\t-l, \t\t\tto see the numbers of turns");
+	ft_putendl("\t-v,\t\tto use visu-hex.py visualizer");
+	ft_putendl("\t-c,\t\tto see output with colors");
+	ft_putendl("\t-l,\t\tto see the numbers of lines");
 	if (all != NULL)
 		free_all(all[0]);
 	exit(-2);
@@ -36,13 +36,12 @@ static char		ft_check_one(char arg[], t_all **all)
 			all[0]->args[1] = 1;
 		else if (arg[i] == 'l')
 			all[0]->args[2] = 1;
-		else 
+		else
 			ft_print_usage(all);
 		i++;
 	}
 	return (1);
 }
-
 
 void			ft_check_arg(int ac, char *av[], t_all *all)
 {
