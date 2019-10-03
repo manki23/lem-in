@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/10/03 14:15:05 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 15:20:48 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char		ft_analyse_input(char **input, t_all *all, t_list **list)
 	return (end_input);
 }
 
-static void		ft_get_and_display_solution(t_queue **so, t_list **in, t_all *a)
+void		ft_get_and_display_solution(t_queue **so, t_list **in, t_all *a)
 {
 	if (so && so[0])
 	{

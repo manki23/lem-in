@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:23 by manki             #+#    #+#             */
-/*   Updated: 2019/10/03 14:24:15 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/03 15:15:53 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		ft_first_ants(int len, int *ants, int **tab, int **ant_nb)
 	}
 }
 
-static int		ft_divide_ants_rest(int **tab, int **nb, int len, int *ant)
+static int		ft_divide_rest(int **tab, int **nb, int len, int *ant)
 {
 	int		i;
 	int		rest;
@@ -79,17 +79,22 @@ static int		ft_divide_ants_rest(int **tab, int **nb, int len, int *ant)
 
 int				ft_cost_computation(t_all **map, t_queue **sol)
 {
-	int		*ant_nb;
-	int		len;
+	int		l;
 	int		ants;
 	int		final_cost;
 
 	ants = map[0]->ants;
-	len = ft_queue_len(*sol);
-	map[0]->path_cost = (int *)malloc(sizeof(int) * len);
-	ant_nb = (int *)malloc(sizeof(int) * len);
-	ft_initialize_tab(&map[0]->path_cost, &ant_nb, sol, len);
-	ft_first_ants(len, &ants, &map[0]->path_cost, &ant_nb);
-	final_cost = ft_divide_ants_rest(&map[0]->path_cost, &ant_nb, len, &ants);
+	l = ft_queue_len(*sol);
+	map[0]->path_cost = (int *)malloc(sizeof(int) * l);
+	map[0]->ant_nb = (int *)malloc(sizeof(int) * l);
+	ft_initialize_tab(&map[0]->path_cost, &map[0]->ant_nb, sol, l);
+	ft_first_ants(l, &ants, &map[0]->path_cost, &map[0]->ant_nb);
+	final_cost = ft_divide_rest(&map[0]->path_cost, &map[0]->ant_nb, l, &ants);
+	ft_printf("final_cost = %d\n", final_cost);
+	for (int u = 0; u < l; u++)
+	{
+		ft_printf("Path[%d]:\n\t\tcost == %d\n\t\tant nb == %d\n", u, map[0]->path_cost[u], map[0]->ant_nb[u]);
+	}
+	ft_putendl("============================");
 	return (final_cost);
 }
