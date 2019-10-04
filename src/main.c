@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/10/03 15:20:48 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/04 14:23:39 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void		ft_init(t_all *all, char *end, t_queue **sol, t_list **list)
 	all->ants = -1;
 	all->path_cost = NULL;
 	all->ant_nb = NULL;
+	all->old_path_cost = NULL;
+	all->old_ant_nb = NULL;
 	end[0] = 0;
 	sol[0] = NULL;
 	list[0] = NULL;

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:26:17 by manki             #+#    #+#             */
-/*   Updated: 2019/10/03 14:03:50 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/04 14:21:26 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ void			free_all(t_all *all)
 		free(all->path_cost);
 	if (all->ant_nb)
 		free(all->ant_nb);
+	if (all->old_path_cost)
+		free(all->old_path_cost);
+	if (all->old_ant_nb)
+		free(all->old_ant_nb);
 }

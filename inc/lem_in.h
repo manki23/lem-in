@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/10/03 14:16:50 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/04 14:21:31 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct		s_all
 	t_room			*room;
 	int				*path_cost;
 	int				*ant_nb;
+	int				*old_path_cost;
+	int				*old_ant_nb;
 
 }					t_all;
 

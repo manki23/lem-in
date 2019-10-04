@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:23 by manki             #+#    #+#             */
-/*   Updated: 2019/10/03 15:15:53 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/04 14:26:46 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,24 @@ int				ft_cost_computation(t_all **map, t_queue **sol)
 
 	ants = map[0]->ants;
 	l = ft_queue_len(*sol);
+	if (map[0]->old_path_cost)
+		free(map[0]->old_path_cost);
+	if (map[0]->old_ant_nb)
+		free(map[0]->old_ant_nb);
+	map[0]->old_path_cost = map[0]->path_cost;
+	map[0]->old_ant_nb = map[0]->ant_nb;
 	map[0]->path_cost = (int *)malloc(sizeof(int) * l);
 	map[0]->ant_nb = (int *)malloc(sizeof(int) * l);
 	ft_initialize_tab(&map[0]->path_cost, &map[0]->ant_nb, sol, l);
 	ft_first_ants(l, &ants, &map[0]->path_cost, &map[0]->ant_nb);
 	final_cost = ft_divide_rest(&map[0]->path_cost, &map[0]->ant_nb, l, &ants);
+	/*
 	ft_printf("final_cost = %d\n", final_cost);
 	for (int u = 0; u < l; u++)
 	{
 		ft_printf("Path[%d]:\n\t\tcost == %d\n\t\tant nb == %d\n", u, map[0]->path_cost[u], map[0]->ant_nb[u]);
 	}
 	ft_putendl("============================");
+	*/
 	return (final_cost);
 }
