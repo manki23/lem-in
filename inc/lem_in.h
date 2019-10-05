@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/10/04 14:21:31 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/05 17:38:09 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,13 @@ typedef struct		s_all
 	int				*ant_nb;
 	int				*old_path_cost;
 	int				*old_ant_nb;
+	int				total_of_lines;
 
 }					t_all;
 
 typedef struct		s_queue
 {
 	t_room			*room;
-	int				nodes;
-	int				c_t;
-	int				ants;
-	int				print;
 	struct s_queue	*next;
 }					t_queue;
 
@@ -121,7 +118,7 @@ t_queue				*ft_breadth_first_search(t_all *map);
 
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
-void				display(t_queue **sol, int ants);
+void				display(t_queue **sol, t_all *all);
 int					calc_nodes(t_room *room);
 
 int					total_ants(int *ants, int size);
@@ -138,5 +135,8 @@ void				stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
 int					check_end(t_room **room, int size);
 
 void				ft_check_arg(int ac, char *av[], t_all *all);
+void				ft_display_bis(t_queue **sol, t_all *map);
+void				ft_paths(t_all *map, int sol_nb);
+void				ft_sort_queue(t_queue **sol);
 
 #endif

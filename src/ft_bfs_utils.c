@@ -6,13 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/10/02 12:05:20 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/05 16:50:27 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-static char		ft_end_is_a_child(t_room *room, t_room *end)
+char		ft_end_is_a_child(t_room *room, t_room *end)
 {
 	t_room	*tmp;
 
@@ -28,7 +28,7 @@ static char		ft_end_is_a_child(t_room *room, t_room *end)
 	return (0);
 }
 
-static char		ft_start_is_a_parent(t_room *room, t_room *start)
+char		ft_start_is_a_parent(t_room *room, t_room *start)
 {
 	t_room	*tmp;
 
@@ -57,7 +57,7 @@ void			ft_clean_path(t_all **map)
 	tmp = map[0]->room;
 	while (tmp)
 	{
-		if (!ft_end_is_a_child(tmp, end) || !ft_start_is_a_parent(tmp, start))
+		if (!ft_end_is_a_child(tmp, end) && !ft_start_is_a_parent(tmp, start))
 		{
 			tmp->parent = tmp->old_parent;
 			tmp->child = tmp->old_child;

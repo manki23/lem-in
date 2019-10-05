@@ -6,110 +6,128 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/03 14:24:31 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/05 17:38:52 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void	print_sol(t_room **tmp, int *i, int c_ants)
+t_room		**ft_set_ant_tmp(t_queue **sol, t_all *map)
 {
-	if (tmp[*i])
+	int			i;
+	int			j;
+	t_queue		*q_tmp;
+	t_room		**ant_tmp;
+
+	if (!(ant_tmp = (t_room **)malloc(sizeof(t_room) * map->ants)))
+		ft_error("ERROR", 2);
+	i = 0;
+	while (i < map->ants)
 	{
-		ft_printf("L%d-%s", *i + 1, tmp[*i]->name);
-		tmp[*i] = tmp[*i]->child;
+		q_tmp = sol[0];
+		j = 0;
+		while (i < map->ants && q_tmp)
+		{
+			if (map->ant_nb[j] > 0)
+			{
+				ant_tmp[i] = q_tmp->room;
+				i++;
+				map->ant_nb[j] -= 1;
+			}
+			q_tmp = q_tmp->next;
+			j++;
+		}
 	}
-	if (*i < c_ants)
-		*i = *i + 1;
+	return (ant_tmp);
 }
 
-int		first_display_check(int o, int size, t_room **tmp, t_queue *d)
+char	ft_ant_already_going_there(t_room **ant_tmp, int index, t_room *end)
 {
-	if (o < size && tmp[0] && d->print == 1)
-		ft_printf(" ");
-	tmp[0] ? d->print = 1 : d->print;
-	if (o == 0)
-		d->c_t++;
+	int		i;
+
+	i = 0;
+	while (i < index)
+	{
+		if (ant_tmp[i] && ant_tmp[i] == ant_tmp[index] && ant_tmp[index] != end)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	ft_no_more_ant_tmp(t_room **ant_tmp, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (ant_tmp[i] != NULL)
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
-void	first_display(int *ants, t_queue *d, t_room **tmp, int c_ants)
+void	ft_print_sol(t_queue **sol, t_all *map, t_room **end)
 {
-	int size;
-	int o;
-	int i;
-	int j;
+	t_room	**ant_tmp;
+	int		i;
+	int		j;
+	int		k;
+	int		space;
 
-	size = ft_queue_len(d);
-	while (total_ants(ants, ft_queue_len(d)) > 0)
+	ant_tmp = ft_set_ant_tmp(sol, map);
+	k = 0;
+	while (!ft_no_more_ant_tmp(ant_tmp, map->ants))
 	{
-		i = 0;
-		o = -1;
-		j = 0;
-		while (++o < size)
-		{
-			if (ants[j] > 0 && first_display_check(o, size, &tmp[i], d) == 1)
-			{
-				print_sol(tmp, &i, c_ants);
-				o >= size - ft_queue_len(d) ? ants[j]-- : ants[j];
-			}
-			if (o >= size - ft_queue_len(d) && j < ft_queue_len(d) - 1)
-				j++;
-		}
-		d->print = 0;
-		ft_printf("\n");
-		size = size + ft_queue_len(d);
-	}
-}
-
-void	display_sol(t_queue **display, int c_ants, int i, int print)
-{
-	t_room	**tmp;
-	int		*ants;
-
-	if (!(tmp = (t_room **)malloc(sizeof(t_room *) * (c_ants + 1))))
-		return ;
-	if (!(ants = malloc(sizeof(int*) * ft_queue_len(display[0]))))
-		return ;
-	chose_ants(ants, c_ants, ft_queue_len(display[0]), &display[0]);
-	stock_room_sol(tmp, display[0], c_ants);
-	first_display(ants, display[0], tmp, c_ants);
-	while (check_end(tmp, c_ants) == -1 && display[0]->c_t++)
-	{
-		while (++i < c_ants)
-		{
-			if (tmp[i] && print == 1)
-				ft_printf(" ");
-			tmp[i] ? print = 1 : print;
-			print_sol(tmp, &i, i - 1);
-		}
-		print = 0;
-		ft_printf("\n");
+		space = -1;
 		i = -1;
+		while (++i < map->ants)
+		{
+			if (ant_tmp[i] && !ft_ant_already_going_there(ant_tmp, i, end[0]))
+			{
+				if (++space)
+					ft_putchar(' ');
+				ft_printf("L%d-%s", i + 1, ant_tmp[i]->name);
+			}
+			else if (ant_tmp[i])
+				break;
+		}
+		j = 0;
+		while (j < i)
+		{
+			if (ant_tmp[j] != NULL)
+				ant_tmp[j] = ant_tmp[j]->child;
+			j++;
+		}
+		ft_putendl("");
+		k++;
 	}
-	free(tmp);
-	free(ants);
+	map->total_of_lines = k;
+	free(ant_tmp);
 }
 
-void	display(t_queue **sol, int ants)
+void	ft_display_bis(t_queue **sol, t_all *map)
 {
-	int i;
+	int		i;
+	t_room	*end;
 
-	i = 1;
-	sol[0]->print = 0;
-	sol[0]->c_t = 0;
+	ft_sort_queue(sol);
+	end = ft_get_room(&map->room, ft_get_room_pos_by_cmd(map->room, CMD_END));
 	if (ft_queue_len(*sol) == 1 && calc_nodes((*sol)->room) == 1)
 	{
-		while (i <= ants)
+		i = 0;
+		while (++i <= map->ants)
 		{
 			ft_printf("L%d-%s", i, sol[0]->room->name);
-			if (i < ants)
+			if (i < map->ants)
 				ft_printf(" ");
 			i++;
 		}
 		ft_printf("\n");
-		sol[0]->c_t++;
+		map->total_of_lines++;
 	}
 	else
-		display_sol(sol, ants, -1, 0);
+		ft_print_sol(sol, map, &end);
 }

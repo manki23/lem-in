@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/10/04 14:12:18 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/05 14:55:55 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void		ft_keep_going(int *k_g, t_queue **sol, int *s_cost, t_all *map)
 		map->ant_nb = map->old_ant_nb;
 		map->path_cost = map->old_path_cost;
 		map->old_path_cost = NULL;
-		map->ant_nb = NULL;
+		map->old_ant_nb = NULL;
 	}
 }
 
