@@ -40,7 +40,12 @@ t_room	*chose_display(t_queue *display, int size)
 	i = 0;
 	tmp_q = display;
 	if (size >= ft_queue_len(display))
+	{
+		if (tmp_q->ants == 0)
+			return (NULL);
+		tmp_q->ants = tmp_q->ants - 1;
 		return (tmp_q->room);
+	}
 	while (tmp_q && i < size)
 	{
 		tmp_q = tmp_q->next;
