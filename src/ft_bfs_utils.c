@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/10/06 14:42:32 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 18:23:54 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,26 @@ static void		ft_forget_this_path(t_room **begin, t_room **start, t_all **map)
 	}
 }
 
+char			ft_has_loop(t_room *room)
+{
+	t_room		*tmp1;
+	t_room		*tmp2;
+
+	tmp1 = room;
+	while (tmp1)
+	{
+		tmp2 = room->parent;
+		while (tmp2)
+		{
+			if (tmp1 == tmp2)
+				return (1);
+			tmp2 = tmp2->parent;
+		}
+		tmp1 = tmp1->parent;
+	}
+	return (0);
+}
+
 void			ft_put_child(t_all **map, t_room **end, t_room **start)
 {
 	t_room	*tmp;
@@ -112,7 +132,7 @@ void			ft_put_child(t_all **map, t_room **end, t_room **start)
 	i = -1;
 	while (tmp && tmp->tab && tmp->tab[++i])
 	{
-		if (tmp->tab[i]->parent && !tmp->tab[i]->child)
+		if (tmp->tab[i]->parent && !tmp->tab[i]->child && tmp->tab[i] != end[0] && tmp->tab[i] != start[0])
 			ft_forget_this_path(&tmp->tab[i], start, map);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/06 14:57:14 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 18:36:33 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	ft_display_bis(t_queue **sol, t_all *map)
 	int		i;
 	t_room	*end;
 
-//	ft_inside_sol(*sol);
+	ft_inside_sol(*sol);
 //	ft_paths(map, ft_queue_len(*sol));
 	end = ft_get_room(&map->room, ft_get_room_pos_by_cmd(map->room, CMD_END));
 	if (ft_queue_len(*sol) == 1 && calc_nodes((*sol)->room) == 1)
