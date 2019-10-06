@@ -72,6 +72,8 @@ typedef struct		s_all
 typedef struct		s_queue
 {
 	t_room			*room;
+	int				nodes;
+	int				c_t;
 	struct s_queue	*next;
 }					t_queue;
 
