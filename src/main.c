@@ -63,11 +63,11 @@ void		ft_display_solution(t_queue **sol, t_list **input_list, t_all *all)
 {
 	if (sol && sol[0])
 	{
-//		ft_lstprint(*input_list, '\n');
+		ft_lstprint(*input_list, '\n');
 		write(1, "\n", 1);
-		ft_display_bis(sol, all);
+		display(sol, all->ants);
 		if (all->args[2] == 1)
-			ft_printf("Number of lines == %d\n", all->total_of_lines);
+			ft_printf("Number of lines == %d\n", sol[0]->c_t);
 		ft_free_queue(sol);
 	}
 	ft_lstdel_2(input_list);

@@ -22,10 +22,10 @@ OBJ_PATH = ./obj/
 LIB_PATH = ./libft/
 
 SRC_NAME = main.c ft_check_line.c ft_check_map.c ft_stock_room.c free.c \
-		   ft_display_all.c ft_add_tube.c ft_room_list.c ft_stock_tube.c \
+		  ft_add_tube.c ft_room_list.c ft_stock_tube.c \
 		   ft_breadth_first_search.c ft_queue_utils.c ft_bfs_utils.c \
-		   ft_bfs_utils_2.c ft_cost_computation.c sort.c \
-		   ft_debbug_display.c ft_check_arg.c ft_sort_queue.c
+		   ft_bfs_utils_2.c ft_cost_computation.c sort.c display_tools.c \
+		   ft_debbug_display.c ft_check_arg.c ft_sort_queue.c display.c
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a

@@ -22,16 +22,6 @@ void	print_sol(t_room **tmp, int *i, int c_ants)
 		*i = *i + 1;
 }
 
-int		first_display_check(int o, int size, t_room **tmp, t_queue *d)
-{
-	if (o < size && tmp[0] && d->print == 1)
-		ft_printf(" ");
-	tmp[0] ? d->print = 1 : d->print;
-	if (o == 0)
-		d->c_t++;
-	return (1);
-}
-
 int		already_pass(t_room **tmp, int i, t_queue **display)
 {
 	int o;
@@ -130,7 +120,6 @@ void	display(t_queue **sol, int ants)
 	int i;
 
 	i = 1;
-	sol[0]->print = 0;
 	sol[0]->c_t = 0;
 	if (ft_queue_len(*sol) == 1 && calc_nodes((*sol)->room) == 1)
 	{

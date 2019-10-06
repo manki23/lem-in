@@ -99,8 +99,7 @@ void	chose_ants(int *ants, int c_ants, int size, t_queue **display)
 		tmp_q = tmp_q->next;
 	}
 	*display = sort_lst(*display);
-	display[0]->print = 0;
-	display[0]->c_t = 0;
+	display[0]->c_t = 1;
 	tmp_q = *display;
 	i = 0;
 	while (tmp_q && i < size)

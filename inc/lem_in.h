@@ -73,6 +73,7 @@ typedef struct		s_queue
 {
 	t_room			*room;
 	int				nodes;
+	int				ants;
 	int				c_t;
 	struct s_queue	*next;
 }					t_queue;
@@ -120,7 +121,7 @@ t_queue				*ft_breadth_first_search(t_all *map);
 
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
-void				display(t_queue **sol, t_all *all);
+void				display(t_queue **sol, int ants);
 int					calc_nodes(t_room *room);
 
 int					total_ants(int *ants, int size);
