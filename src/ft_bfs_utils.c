@@ -57,7 +57,7 @@ void			ft_clean_path(t_all **map)
 	tmp = map[0]->room;
 	while (tmp)
 	{
-		if (!ft_end_is_a_child(tmp, end) || !ft_start_is_a_parent(tmp, start))
+		if (!ft_end_is_a_child(tmp, end) && !ft_start_is_a_parent(tmp, start))
 		{
 			tmp->parent = tmp->old_parent;
 			tmp->child = tmp->old_child;
