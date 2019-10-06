@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 11:56:12 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/05 17:32:32 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 14:55:24 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,4 @@ void		ft_sort_queue(t_queue **sol)
 			tmp = tmp->next;
 		}
 	}
-}
-
-int			calc_nodes(t_room *room)
-{
-	t_room	*tmp;
-	int		c;
-
-	c = 0;
-	tmp = room;
-	while (tmp)
-	{
-		tmp = tmp->child;
-		c++;
-	}
-	return (c);
 }

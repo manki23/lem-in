@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/10/05 17:38:09 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 13:55:53 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,6 @@ void				ft_check_arg(int ac, char *av[], t_all *all);
 void				ft_display_bis(t_queue **sol, t_all *map);
 void				ft_paths(t_all *map, int sol_nb);
 void				ft_sort_queue(t_queue **sol);
+void				ft_inside_sol(t_queue *sol);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:47 by manki             #+#    #+#             */
-/*   Updated: 2019/10/04 16:45:04 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 14:03:15 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_stock_solution(t_queue **sol, t_all **map)
 	}
 	if (!sol[0] && start->child && start->child == end)
 		ft_enqueue(sol, &start);
+	ft_sort_queue(sol);
 }
 
 int		ft_another_path_exist(t_all *map, t_room **room)

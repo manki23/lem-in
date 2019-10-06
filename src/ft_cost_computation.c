@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:23 by manki             #+#    #+#             */
-/*   Updated: 2019/10/05 17:38:55 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 14:42:47 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,20 @@ static void		ft_first_ants(int len, int *ants, int **tab, int **ant_nb)
 	i = -1;
 	while (ants[0] > 0 && ++i < len)
 	{
-		if ((ants[0] - (1 + tab[0][len - 1] - tab[0][i])) >= 0)
+		ant_nb[0][i] += 1;
+		ants[0] -= 1;
+	}
+	i = -1;
+	while (ants[0] > 0 && ++i < len)
+	{
+		if ((ants[0] - (tab[0][len - 1] - tab[0][i])) >= 0)
 		{
-			ant_nb[0][i] += 1 + tab[0][len - 1] - tab[0][i];
-			ants[0] -= ant_nb[0][i];
+			ant_nb[0][i] += tab[0][len - 1] - tab[0][i];
+			ants[0] -= tab[0][len - 1] - tab[0][i];
 		}
 		else
 		{
-			ant_nb[0][i] = ants[0];
+			ant_nb[0][i] += ants[0];
 			ants[0] = 0;
 		}
 	}
@@ -97,6 +103,7 @@ void			ft_paths(t_all *map, int sol_nb)
 	int		final_cost;
 
 	final_cost = ft_calc_final_cost(map->path_cost, map->ant_nb, sol_nb);
+	ft_printf("ant nb: %d\n", map->ants);
 	ft_printf("final_cost = %d\n", final_cost);
 	for (int u = 0; u < sol_nb; u++)
 	{
@@ -124,6 +131,5 @@ int				ft_cost_computation(t_all **map, t_queue **sol)
 	ft_initialize_tab(&map[0]->path_cost, &map[0]->ant_nb, sol, l);
 	ft_first_ants(l, &ants, &map[0]->path_cost, &map[0]->ant_nb);
 	final_cost = ft_divide_rest(&map[0]->path_cost, &map[0]->ant_nb, l, &ants);
-//	ft_paths(map[0], l);
 	return (final_cost);
 }

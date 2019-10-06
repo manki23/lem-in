@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/05 17:38:52 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 14:57:14 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_room		**ft_set_ant_tmp(t_queue **sol, t_all *map)
 	if (!(ant_tmp = (t_room **)malloc(sizeof(t_room) * map->ants)))
 		ft_error("ERROR", 2);
 	i = 0;
-	while (i < map->ants)
+	int k = 0;
+	while (i < map->ants && ++k <= 100)
 	{
 		q_tmp = sol[0];
 		j = 0;
@@ -108,12 +109,28 @@ void	ft_print_sol(t_queue **sol, t_all *map, t_room **end)
 	free(ant_tmp);
 }
 
+void	ft_inside_sol(t_queue *sol)
+{
+	t_queue *tmp;
+
+	tmp = sol;
+	while (tmp)
+	{
+		ft_printf("path name : %s\n", tmp->room->name);
+		ft_printf("path cost : %d\n", ft_solution_len(tmp->room));
+		ft_putendl("//////////////");
+		tmp = tmp->next;
+	}
+		ft_putendl("//////////////");
+}
+
 void	ft_display_bis(t_queue **sol, t_all *map)
 {
 	int		i;
 	t_room	*end;
 
-	ft_sort_queue(sol);
+//	ft_inside_sol(*sol);
+//	ft_paths(map, ft_queue_len(*sol));
 	end = ft_get_room(&map->room, ft_get_room_pos_by_cmd(map->room, CMD_END));
 	if (ft_queue_len(*sol) == 1 && calc_nodes((*sol)->room) == 1)
 	{

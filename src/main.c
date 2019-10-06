@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/10/05 17:39:13 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 14:46:35 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		ft_display_solution(t_queue **sol, t_list **input_list, t_all *all)
 {
 	if (sol && sol[0])
 	{
-		ft_lstprint(*input_list, '\n');
+//		ft_lstprint(*input_list, '\n');
 		write(1, "\n", 1);
 		ft_display_bis(sol, all);
 		if (all->args[2] == 1)

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/10/05 16:50:27 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/06 14:42:32 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			ft_clean_path(t_all **map)
 	tmp = map[0]->room;
 	while (tmp)
 	{
-		if (!ft_end_is_a_child(tmp, end) && !ft_start_is_a_parent(tmp, start))
+		if (!ft_end_is_a_child(tmp, end) || !ft_start_is_a_parent(tmp, start))
 		{
 			tmp->parent = tmp->old_parent;
 			tmp->child = tmp->old_child;
