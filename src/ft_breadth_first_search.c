@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/10/06 18:36:56 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 16:21:08 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void		ft_one_backtrack(t_room **room, t_queue **list, int i)
 {
+	t_room		*tmp;
+
 	room[0]->tab[i]->child = room[0]->tab[i]->old_parent;
 	if (room[0]->tab[i]->child->visit == 0)
 		ft_enqueue(list, &room[0]->tab[i]->child);
@@ -22,6 +24,13 @@ static void		ft_one_backtrack(t_room **room, t_queue **list, int i)
 	room[0]->child = room[0]->tab[i];
 	room[0]->tab[i]->visit++;
 	room[0]->tab[i]->child->child = NULL;
+	tmp = room[0]->tab[i]->child->old_parent;
+	while (tmp)
+	{
+		tmp->child = NULL;
+		tmp->parent = NULL;
+		tmp = tmp->old_parent;
+	}
 }
 
 static void		ft_bfs_run(t_queue **list, char *stop, t_all **map)
@@ -74,14 +83,14 @@ static char		ft_bfs_algo(t_all **map, unsigned long long tour)
 
 static void		ft_keep_going(int *k_g, t_queue **sol, int *s_cost, t_all *map)
 {
-	int			i;
+	int			cost;
 	t_room		*tmp;
 
 	k_g[0] = 0;
-	i = ft_cost_computation(&map, sol);
-	if (i < s_cost[0])
+	cost = ft_cost_computation(&map, sol);
+	if (cost < s_cost[0])
 	{
-		s_cost[0] = i;
+		s_cost[0] = cost;
 		k_g[0] = 1;
 		ft_copy_in_old(&map);
 	}
@@ -106,6 +115,33 @@ static void		ft_keep_going(int *k_g, t_queue **sol, int *s_cost, t_all *map)
 		map->old_ant_nb = NULL;
 	}
 }
+
+/*
+** ft_breadth_first_search(t_all *map);
+** VARIABLES:
+**		sol: est un tableau de pointeurs sur room, sol contient la liste de
+** toutes les rooms commencant un chemin a suivre par les fourmis
+**		sol_cost: nombre total de lignes que prendra la solution trouvee
+**		keep_going: variable qui dit si il faut continuer de chercher d'autres
+** chemins
+**		tour: variable qui compte le nombre de fois ou on a fait appel a
+** ft_bfs_algo (necessaire pour savoir si il n'y a aucune solution dans la map)
+** FONCTION:
+** tant qu'il faut continuer a chercher des chemin on lance ft_bfs_algo() qui
+** cherche le premier chemin le plus court apres ceux qu'on a deja trouve.
+** ft_reset_visit pour remettre a 0 le compteur de visite de toutes les rooms
+** de la map
+** ft_check_duplicate: si lors de la recherche du chemin le plus court on a fait
+** un backtracking sur un chemin precedemment trouve check_duplicate verifie les
+** repetitions de pointeurs et fait les permutation pour avoir des chemins
+** distinct
+** stock_solution remplit sol avec la solution trouvee
+** keep_going evalue la solution trouve en la comparant a la precedente et
+** attribue a la variable keep_going 0 ou 1 en fonction de si il faut continuer
+** a chercher des chemins ou si notre solution est deja la meilleur.
+** RETOUR:
+** sol est retourne pour etre utilise dans l'affichage de la solution.
+*/
 
 t_queue			*ft_breadth_first_search(t_all *map)
 {

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:23 by manki             #+#    #+#             */
-/*   Updated: 2019/10/06 14:42:47 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 11:36:25 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		ft_first_ants(int len, int *ants, int **tab, int **ant_nb)
 	}
 }
 
-static int		ft_calc_final_cost(int *path_cost, int *ant_nb, int len)
+int				ft_calc_final_cost(int *path_cost, int *ant_nb, int len)
 {
 	int		cost;
 	int		i;
@@ -96,20 +96,6 @@ static int		ft_divide_rest(int **tab, int **nb, int len, int *ant)
 	if (len > 0)
 		return (ft_calc_final_cost(tab[0], nb[0], len));
 	return (INT_MAX);
-}
-
-void			ft_paths(t_all *map, int sol_nb)
-{
-	int		final_cost;
-
-	final_cost = ft_calc_final_cost(map->path_cost, map->ant_nb, sol_nb);
-	ft_printf("ant nb: %d\n", map->ants);
-	ft_printf("final_cost = %d\n", final_cost);
-	for (int u = 0; u < sol_nb; u++)
-	{
-		ft_printf("Path[%d]:\n\t\tcost == %d\n\t\tant nb == %d\n", u, map->path_cost[u], map->ant_nb[u]);
-	}
-	ft_putendl("============================");
 }
 
 int				ft_cost_computation(t_all **map, t_queue **sol)

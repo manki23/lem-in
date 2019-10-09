@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/03 14:24:31 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 12:33:41 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ void	print_sol(t_room **tmp, int *i, int c_ants)
 		*i = *i + 1;
 }
 
-int		already_pass(t_room **tmp, int i, t_queue **display)
+int		already_pass(t_room **tmp, int i)
 {
-	int o;
-	t_room *end;
+	int		o;
+	t_room	*end;
+
 	if (!tmp[i])
 		return (-1);
-		(void)display;
 	end = ft_get_room(&tmp[i], ft_get_room_pos_by_cmd(tmp[i],
 				CMD_END));
-	//ft_printf("end name == %s ",end->name);
 	o = 0;
 	while (o < i)
 	{
@@ -44,7 +43,7 @@ int		already_pass(t_room **tmp, int i, t_queue **display)
 
 void	tmp_next_child(t_room **tmp, int i)
 {
-	int o;
+	int		o;
 
 	o = 0;
 	while (o < i)
@@ -55,16 +54,16 @@ void	tmp_next_child(t_room **tmp, int i)
 	}
 }
 
-void	first_display(int *ants, t_queue *d, t_room **tmp, int c_ants)
+void	first_display(t_queue *d, t_room **tmp, int c_ants)
 {
-	int i;
-	int print;
-	(void)ants;
+	int		i;
+	int		print;
+
 	print = 0;
 	i = 0;
 	while (i < c_ants)
 	{
-		if (already_pass(tmp, i, &d) == -1)
+		if (already_pass(tmp, i) == -1)
 		{
 			if (tmp[i] && print == 1)
 				ft_printf(" ");
@@ -95,7 +94,7 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 		return ;
 	chose_ants(ants, c_ants, ft_queue_len(display[0]), &display[0]);
 	stock_room_sol(tmp, display[0], c_ants);
-	first_display(ants, display[0], tmp, c_ants);
+	first_display(display[0], tmp, c_ants);
 	while (check_end(tmp, c_ants) == -1)
 	{
 		while (i < c_ants)

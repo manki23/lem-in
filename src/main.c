@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/10/06 18:36:49 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 16:21:48 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char		ft_analyse_input(char **input, t_all *all, t_list **list)
 	return (end_input);
 }
 
-void		ft_display_solution(t_queue **sol, t_list **input_list, t_all *all)
+void			ft_disp_solution(t_queue **sol, t_list **input_list, t_all *all)
 {
 	if (sol && sol[0])
 	{
@@ -97,6 +97,6 @@ int				main(int ac, char **av)
 	}
 	else
 		ft_error_bis(&all, "ERROR", 2, &input_list);
-	ft_display_solution(&solution, &input_list, &all);
+	ft_disp_solution(&solution, &input_list, &all);
 	return (0);
 }

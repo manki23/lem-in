@@ -6,45 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/10/06 18:23:54 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 16:09:55 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-char		ft_end_is_a_child(t_room *room, t_room *end)
-{
-	t_room	*tmp;
-
-	tmp = room;
-	while (tmp)
-	{
-		if (tmp == end)
-			return (1);
-		if (tmp->child && tmp->child != end && tmp->child->parent != tmp)
-			return (0);
-		tmp = tmp->child;
-	}
-	return (0);
-}
-
-char		ft_start_is_a_parent(t_room *room, t_room *start)
-{
-	t_room	*tmp;
-
-	tmp = room;
-	while (tmp)
-	{
-		if (tmp == start)
-			return (1);
-		if (tmp->parent && tmp->parent != start && tmp->parent->child != tmp)
-			return (0);
-		tmp = tmp->parent;
-	}
-	return (0);
-}
-
-void			ft_clean_path(t_all **map)
+void		ft_clean_path(t_all **map)
 {
 	t_room	*tmp;
 	t_room	*end;
@@ -66,19 +34,7 @@ void			ft_clean_path(t_all **map)
 	}
 }
 
-void			ft_reset_visit(t_all **map)
-{
-	t_room	*tmp;
-
-	tmp = map[0]->room;
-	while (tmp)
-	{
-		tmp->visit = 0;
-		tmp = tmp->next;
-	}
-}
-
-static void		ft_forget_this_path(t_room **begin, t_room **start, t_all **map)
+static void	ft_forget_this_path(t_room **begin, t_room **start, t_all **map)
 {
 	t_room		*tmp;
 	t_room		*tmp2;
@@ -95,27 +51,7 @@ static void		ft_forget_this_path(t_room **begin, t_room **start, t_all **map)
 	}
 }
 
-char			ft_has_loop(t_room *room)
-{
-	t_room		*tmp1;
-	t_room		*tmp2;
-
-	tmp1 = room;
-	while (tmp1)
-	{
-		tmp2 = room->parent;
-		while (tmp2)
-		{
-			if (tmp1 == tmp2)
-				return (1);
-			tmp2 = tmp2->parent;
-		}
-		tmp1 = tmp1->parent;
-	}
-	return (0);
-}
-
-void			ft_put_child(t_all **map, t_room **end, t_room **start)
+void		ft_put_child(t_all **map, t_room **end, t_room **start)
 {
 	t_room	*tmp;
 	int		i;
@@ -132,12 +68,13 @@ void			ft_put_child(t_all **map, t_room **end, t_room **start)
 	i = -1;
 	while (tmp && tmp->tab && tmp->tab[++i])
 	{
-		if (tmp->tab[i]->parent && !tmp->tab[i]->child && tmp->tab[i] != end[0] && tmp->tab[i] != start[0])
+		if (tmp->tab[i]->parent && !tmp->tab[i]->child && tmp->tab[i] != end[0]
+		&& tmp->tab[i] != start[0])
 			ft_forget_this_path(&tmp->tab[i], start, map);
 	}
 }
 
-void			ft_copy_in_old(t_all **map)
+void		ft_copy_in_old(t_all **map)
 {
 	t_room	*tmp;
 

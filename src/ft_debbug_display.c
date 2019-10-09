@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 11:07:11 by manki             #+#    #+#             */
-/*   Updated: 2019/10/03 14:22:51 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 11:36:28 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,22 @@ void		ft_print_queue(t_queue *list)
 		tmp = tmp->next;
 	}
 	ft_putendl("");
+}
+
+void		ft_paths(t_all *map, int sol_nb)
+{
+	int		final_cost;
+	int		u;
+
+	final_cost = ft_calc_final_cost(map->path_cost, map->ant_nb, sol_nb);
+	ft_printf("ant nb: %d\n", map->ants);
+	ft_printf("final_cost = %d\n", final_cost);
+	u = -1;
+	while (++u < sol_nb)
+	{
+		ft_printf("Path[%d]:\n\t\t", u);
+		ft_printf("cost == %d\n\t\t", map->path_cost[u]);
+		ft_printf("ant nb == %d\n", map->ant_nb[u]);
+	}
+	ft_putendl("============================");
 }

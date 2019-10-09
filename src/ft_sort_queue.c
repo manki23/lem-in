@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 11:56:12 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/06 14:55:24 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 11:29:21 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		ft_sort_queue(t_queue **sol)
 			if (calc_nodes(tmp->room) > calc_nodes(tmp->next->room))
 			{
 				swap = tmp->room;
-				tmp->room= tmp->next->room;
+				tmp->room = tmp->next->room;
 				tmp->next->room = swap;
 				keep_going = 1;
 			}

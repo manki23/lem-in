@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/10/06 13:55:53 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/09 11:46:14 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,14 @@ void				stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
 int					check_end(t_room **room, int size);
 
 void				ft_check_arg(int ac, char *av[], t_all *all);
-void				ft_display_bis(t_queue **sol, t_all *map);
 void				ft_paths(t_all *map, int sol_nb);
 void				ft_sort_queue(t_queue **sol);
 void				ft_inside_sol(t_queue *sol);
+int					ft_calc_final_cost(int *path_cost, int *ant_nb, int len);
+
+char				ft_end_is_a_child(t_room *room, t_room *end);
+char				ft_start_is_a_parent(t_room *room, t_room *start);
+
+char				ft_has_loop(t_room *room);
 
 #endif
