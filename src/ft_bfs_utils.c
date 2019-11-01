@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 16:09:55 by manki            ###   ########.fr       */
+/*   Updated: 2019/10/31 14:28:10 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		ft_clean_path(t_all **map)
 	}
 }
 
-static void	ft_forget_this_path(t_room **begin, t_room **start, t_all **map)
+void	ft_forget_this_path(t_room **begin, t_room **start, t_all **map)
 {
 	t_room		*tmp;
 	t_room		*tmp2;
@@ -66,12 +66,13 @@ void		ft_put_child(t_all **map, t_room **end, t_room **start)
 		tmp->parent->child = tmp;
 	tmp = start[0];
 	i = -1;
-	while (tmp && tmp->tab && tmp->tab[++i])
-	{
-		if (tmp->tab[i]->parent && !tmp->tab[i]->child && tmp->tab[i] != end[0]
-		&& tmp->tab[i] != start[0])
-			ft_forget_this_path(&tmp->tab[i], start, map);
-	}
+	(void)map;
+//	while (tmp && tmp->tab && tmp->tab[++i])
+//	{
+//		if (tmp->tab[i]->parent && !tmp->tab[i]->child && tmp->tab[i] != end[0]
+//		&& tmp->tab[i] != start[0])
+//			ft_forget_this_path(&tmp->tab[i], start, map);
+//	}
 }
 
 void		ft_copy_in_old(t_all **map)

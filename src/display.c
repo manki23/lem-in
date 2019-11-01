@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_all.c                                   :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/09 12:33:41 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/01 11:45:04 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,14 @@ void	display(t_queue **sol, int ants)
 	}
 	else
 		display_sol(sol, ants, 0, 0);
+	//for debbugg:
+//	t_queue *tmp;
+//	tmp = *sol;
+//	ft_printf("------------------------------\nYodana:\n");
+//	for(int u = 0; u < ft_queue_len(*sol); u++) {
+//		ft_printf("Path[%d]:\n\t\tnodes == %d\n", u, tmp->nodes);
+//		ft_printf("\t\tants == %d\n\t\tc_t == %d\n", tmp->ants, tmp->c_t);
+//		tmp = tmp->next;
+//	}
+//	ft_printf("-------------------------------\n");
 }

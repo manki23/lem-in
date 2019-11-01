@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 16:21:48 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/01 11:43:42 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ void			ft_disp_solution(t_queue **sol, t_list **input_list, t_all *all)
 		ft_lstprint(*input_list, '\n');
 		write(1, "\n", 1);
 		display(sol, all->ants);
+	//	ft_inside_sol(*sol);
+//		ft_paths(all, ft_queue_len(*sol));
+		//ft_print_solutions(*sol);
 		if (all->args[2] == 1)
 			ft_printf("Number of lines == %d\n", sol[0]->c_t);
 		ft_free_queue(sol);
@@ -96,7 +99,9 @@ int				main(int ac, char **av)
 		}
 	}
 	else
+	{
 		ft_error_bis(&all, "ERROR", 2, &input_list);
+	}
 	ft_disp_solution(&solution, &input_list, &all);
 	return (0);
 }

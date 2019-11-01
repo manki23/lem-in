@@ -6,13 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 16:21:08 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/01 11:49:22 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-static void		ft_one_backtrack(t_room **room, t_queue **list, int i)
+/*static*/ void		ft_one_backtrack(t_room **room, t_queue **list, int i)
 {
 	t_room		*tmp;
 
@@ -73,6 +73,7 @@ static char		ft_bfs_algo(t_all **map, unsigned long long tour)
 	if (stop || !list)
 		ft_put_child(map, &end, &start);
 	ft_free_queue(&list);
+//	ft_print_room_ptr(map[0]->room);
 	if (!end->parent && tour == 0)
 		return (0);
 	if (end->parent == start)
@@ -116,33 +117,6 @@ static void		ft_keep_going(int *k_g, t_queue **sol, int *s_cost, t_all *map)
 	}
 }
 
-/*
-** ft_breadth_first_search(t_all *map);
-** VARIABLES:
-**		sol: est un tableau de pointeurs sur room, sol contient la liste de
-** toutes les rooms commencant un chemin a suivre par les fourmis
-**		sol_cost: nombre total de lignes que prendra la solution trouvee
-**		keep_going: variable qui dit si il faut continuer de chercher d'autres
-** chemins
-**		tour: variable qui compte le nombre de fois ou on a fait appel a
-** ft_bfs_algo (necessaire pour savoir si il n'y a aucune solution dans la map)
-** FONCTION:
-** tant qu'il faut continuer a chercher des chemin on lance ft_bfs_algo() qui
-** cherche le premier chemin le plus court apres ceux qu'on a deja trouve.
-** ft_reset_visit pour remettre a 0 le compteur de visite de toutes les rooms
-** de la map
-** ft_check_duplicate: si lors de la recherche du chemin le plus court on a fait
-** un backtracking sur un chemin precedemment trouve check_duplicate verifie les
-** repetitions de pointeurs et fait les permutation pour avoir des chemins
-** distinct
-** stock_solution remplit sol avec la solution trouvee
-** keep_going evalue la solution trouve en la comparant a la precedente et
-** attribue a la variable keep_going 0 ou 1 en fonction de si il faut continuer
-** a chercher des chemins ou si notre solution est deja la meilleur.
-** RETOUR:
-** sol est retourne pour etre utilise dans l'affichage de la solution.
-*/
-
 t_queue			*ft_breadth_first_search(t_all *map)
 {
 	t_queue				*sol;
@@ -162,6 +136,7 @@ t_queue			*ft_breadth_first_search(t_all *map)
 		ft_check_duplicates(&map);
 		ft_clean_path(&map);
 		ft_stock_solution(&sol, &map);
+		//ft_print_solutions(sol);
 		ft_keep_going(&keep_going, &sol, &sol_cost, map);
 		if (keep_going)
 			ft_free_queue(&sol);
