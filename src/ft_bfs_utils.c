@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/10/31 14:28:10 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/01 15:42:58 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void		ft_clean_path(t_all **map)
 	tmp = map[0]->room;
 	while (tmp)
 	{
+		if (!tmp->child)
+			tmp->child = tmp->old_child;
+		tmp = tmp->next;
+	}
+	tmp = map[0]->room;
+	while (tmp)
+	{
 		if (!ft_end_is_a_child(tmp, end) || !ft_start_is_a_parent(tmp, start))
 		{
 			tmp->parent = tmp->old_parent;
@@ -32,6 +39,20 @@ void		ft_clean_path(t_all **map)
 		}
 		tmp = tmp->next;
 	}
+}
+
+char	ft_is_in_list(t_queue *list, t_room *room)
+{
+	t_queue		*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->room->name, room->name) == 0)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 void	ft_forget_this_path(t_room **begin, t_room **start, t_all **map)

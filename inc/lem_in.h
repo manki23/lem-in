@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 11:46:14 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/01 13:16:35 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,6 @@ char				ft_end_is_a_child(t_room *room, t_room *end);
 char				ft_start_is_a_parent(t_room *room, t_room *start);
 
 char				ft_has_loop(t_room *room);
+char				ft_is_in_list(t_queue *list, t_room *room);
 
 #endif

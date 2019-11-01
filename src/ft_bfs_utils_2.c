@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:47 by manki             #+#    #+#             */
-/*   Updated: 2019/10/31 14:27:39 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/01 15:14:10 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ void	ft_visit_node(t_room **room, t_all **map, char *stop)
 			stop[0]++;
 		if (room[0] != end && !room[0]->tab[i]->parent &&
 				room[0]->tab[i] != start && room[0]->parent != room[0]->tab[i])
+		{
 			room[0]->tab[i]->parent = room[0];
+		}
 	}
 	room[0]->visit++;
 }
