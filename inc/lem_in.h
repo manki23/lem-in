@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/11/01 13:16:35 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 15:47:56 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # define _END "\033[0m"
 
 # define ARGS_NUMBER 3
+
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
 
 enum	{ ERROR, NUMBER, COMMAND, ROOM, TUBE, COMMENT };
 

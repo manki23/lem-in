@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 12:09:23 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 17:35:55 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 10:20:07 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				ft_check_line(char *in)
 	if (len >= 1 && len <= 10 && ft_str_is_numeric(in) &&
 			ft_atoll(in) <= INT_MAX)
 		return (NUMBER);
-	else if (len >= 2 && in[0] == '#' && in[1] == '#')
+	else if (len >= 2 && in[0] == '#' && in[1] == '#' && in[2] != '#')
 		return (COMMAND);
 	else if (len >= 1 && in[0] == '#')
 		return (COMMENT);

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:11:01 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 17:29:46 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 15:24:51 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ char			ft_stock_tube(char *input, t_all **map)
 	if (!(split = ft_strsplit(input, '-')))
 		return (0);
 	if (ft_both_are_room(split, map[0]->room))
-	{
-		ft_add_tube(&map[0]->room, split[0], split[1]);
-		ret = 1;
-	}
+		ret = ft_add_tube(&map[0]->room, split[0], split[1]);
 	ft_strrdel(split);
 	return (ret);
 }

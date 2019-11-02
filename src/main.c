@@ -6,18 +6,18 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:09:18 by manki             #+#    #+#             */
-/*   Updated: 2019/11/01 16:46:36 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 16:26:46 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-static void		ft_error_bis(t_all *all, char str[], char fd, t_list **list)
+static void		ft_error_bis(t_all *all, char str[], t_list **list)
 {
 	free_all(all);
 	if (list && list[0])
 		ft_lstdel_2(list);
-	ft_error(str, fd);
+	ft_error(str, STDERR);
 }
 
 static void		ft_init(t_all *all, char *end, t_queue **sol, t_list **list)
@@ -39,21 +39,24 @@ static void		ft_init(t_all *all, char *end, t_queue **sol, t_list **list)
 static char		ft_analyse_input(char **input, t_all *all, t_list **list)
 {
 	char		end_input;
+	char		save;
 
 	end_input = 0;
-	if (!ft_check_map(*input, ft_check_line(*input), all))
+	save = 0;
+	if (!(save = ft_check_map(*input, ft_check_line(*input), all)))
 	{
 		if (ft_map_enough_to_launch(all))
 			end_input = 1;
 		else
 		{
 			ft_strdel(input);
-			ft_error_bis(all, "ERROR", 2, list);
+		system("leaks lem-in");
+			ft_error_bis(all, "ERROR", list);
 		}
 	}
-	if (!list && !list[0] && !end_input)
+	if (!list && !list[0] && !end_input && save == 1)
 		list[0] = ft_lstnew(input[0], ft_strlen(input[0]));
-	else if (!end_input)
+	else if (!end_input && save == 1)
 		ft_lsadd(list, input[0], ft_strlen(input[0]));
 	ft_strdel(input);
 	return (end_input);
@@ -88,7 +91,7 @@ int				main(int ac, char **av)
 
 	ft_init(&all, &end_input, &solution, &input_list);
 	ft_check_arg(ac, av, &all);
-	while (!end_input && get_next_line(0, &input) == 1)
+	while (!end_input && get_next_line(STDIN, &input) == 1)
 		end_input = ft_analyse_input(&input, &all, &input_list);
 	if (ft_map_enough_to_launch(&all))
 	{
@@ -96,12 +99,14 @@ int				main(int ac, char **av)
 		{
 			if (input)
 				ft_strdel(&input);
-			ft_error_bis(&all, "ERROR", 2, &input_list);
+			system("leaks lem-in");
+			ft_error_bis(&all, "ERROR", &input_list);
 		}
 	}
 	else
 	{
-		ft_error_bis(&all, "ERROR", 2, &input_list);
+		system("leaks lem-in");
+		ft_error_bis(&all, "ERROR", &input_list);
 	}
 	ft_disp_solution(&solution, &input_list, &all);
 	return (0);

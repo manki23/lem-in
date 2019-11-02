@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 11:27:37 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 17:36:09 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 15:56:49 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 static char		ft_stock_command(char *str, t_all **map)
 {
-	map[0]->command_stack = ft_strdup(str);
-	return (1);
+	if ((!ft_strcmp(str, "##start") || !ft_strcmp(str, "##end"))
+		&& map[0]->command_stack == NULL)
+	{
+		map[0]->command_stack = ft_strdup(str);
+		return (1);
+	}
+	else if (map[0]->command_stack != NULL)
+		return (ERROR);
+	else
+		return (2);
 }
 
 static char		ft_have_tube(t_room *room)
@@ -67,7 +75,7 @@ char			ft_check_map(char *input, char line_id, t_all *map)
 	else if (line_id == TUBE && map->ants > 0 && map->room != NULL &&
 			map->command_stack == NULL)
 		return (ft_stock_tube(input, &map));
-	else if (line_id == COMMAND && map->command_stack == NULL)
+	else if (line_id == COMMAND && map->ants > 0)
 		return (ft_stock_command(input, &map));
 	else if (line_id != COMMENT)
 		return (ERROR);

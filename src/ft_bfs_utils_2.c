@@ -6,11 +6,37 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:47 by manki             #+#    #+#             */
-/*   Updated: 2019/11/01 15:14:10 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 13:11:47 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
+
+static char		ft_sol_is_colliding(t_queue *sol, t_room *path, t_room *end)
+{
+	t_queue		*tmp_sol;
+	t_room		*tmp_path;
+	t_room		*tmp_room;
+
+	tmp_sol = sol;
+	while (tmp_sol)
+	{
+		tmp_path = path;
+		while (tmp_path)
+		{
+			tmp_room = tmp_sol->room;
+			while (tmp_room)
+			{
+				if (tmp_room == tmp_path && tmp_room != end)
+					return (1);
+				tmp_room = tmp_room->child;
+			}
+			tmp_path = tmp_path->child;
+		}
+		tmp_sol = tmp_sol->next;
+	}
+	return (0);
+}
 
 void	ft_stock_solution(t_queue **sol, t_all **map)
 {
@@ -25,8 +51,9 @@ void	ft_stock_solution(t_queue **sol, t_all **map)
 	tmp = map[0]->room;
 	while (tmp)
 	{
-		if ((tmp->parent && tmp->parent == start)
+		if (((tmp->parent && tmp->parent == start)
 				|| (tmp == end && tmp->old_parent == start))
+				&& !ft_sol_is_colliding(*sol, tmp, end))
 			ft_enqueue(sol, &tmp);
 		tmp = tmp->next;
 	}

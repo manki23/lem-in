@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 13:50:15 by manki             #+#    #+#             */
-/*   Updated: 2019/09/09 13:55:45 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 15:23:06 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ static char		ft_connect(t_room **room_a, t_room **room_b)
 			room_a[0]->tab[0] = room_b[0];
 			room_a[0]->tab[1] = NULL;
 		}
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 char			ft_add_tube(t_room **list, char *room_a, char *room_b)
@@ -103,7 +104,7 @@ char			ft_add_tube(t_room **list, char *room_a, char *room_b)
 				ok = 1;
 			tmp = tmp->next;
 		}
-		return (ft_connect(&r_a, &r_b) + ft_connect(&r_b, &r_a));
+		return (ft_connect(&r_a, &r_b) * ft_connect(&r_b, &r_a));
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:52:25 by manki             #+#    #+#             */
-/*   Updated: 2019/11/01 16:45:50 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 13:06:32 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,24 @@
 {
 	t_room		*tmp;
 
-	room[0]->tab[i]->child = room[0]->tab[i]->old_parent;
-	if (room[0]->tab[i]->child->visit == 0)
-		ft_enqueue(list, &room[0]->tab[i]->child);
-	room[0]->tab[i]->child->parent = room[0]->tab[i];
-	room[0]->tab[i]->parent = room[0];
-	room[0]->child = room[0]->tab[i];
-//	room[0]->tab[i]->visit++;
-	room[0]->tab[i]->child->child = NULL;
-	tmp = room[0]->tab[i]->child->old_parent;
-	while (tmp)
+	if (room[0]->tab[i]->parent == room[0]->tab[i]->old_parent)
 	{
-		tmp->child = NULL;
-		tmp->parent = NULL;
-		tmp = tmp->old_parent;
+		room[0]->tab[i]->child = room[0]->tab[i]->old_parent;
+		if (room[0]->tab[i]->child->visit == 0)
+			ft_enqueue(list, &room[0]->tab[i]->child);
+		room[0]->tab[i]->child->parent = room[0]->tab[i];
+		room[0]->tab[i]->parent = room[0];
+//	ft_printf("room name: %s\n tab[%d]->name : %s\n tab[%d]->parent->name:%s\n\n", room[0]->name, i, room[0]->tab[i]->name, i, room[0]->tab[i]->parent->name);
+		room[0]->child = room[0]->tab[i];
+//	room[0]->tab[i]->visit++;
+		room[0]->tab[i]->child->child = NULL;
+		tmp = room[0]->tab[i]->child->old_parent;
+		while (tmp)
+		{
+			tmp->child = NULL;
+			tmp->parent = NULL;
+			tmp = tmp->old_parent;
+		}
 	}
 }
 
@@ -45,7 +49,6 @@ static void		ft_bfs_run(t_queue **list, char *stop, t_all **map)
 	if (working_node->room->visit == 0)
 		ft_visit_node(&working_node->room, &map[0], stop);
 	i = -1;
-	//	ft_putendl("this is a loop");
 	while (working_node->room->tab && working_node->room->tab[++i])
 	{
 	//		ft_printf("working_node->tab[%d] == %s\n", i, working_node->room->tab[i]->name);
@@ -153,7 +156,9 @@ t_queue			*ft_breadth_first_search(t_all *map)
 	//	ft_putendl("FINAL after clean:");
 	//	ft_print_room_ptr(map->room);
 		ft_stock_solution(&sol, &map);
+	//	ft_putendl("\nSol:");
 	//	ft_print_solutions(sol);
+	//	ft_putendl("****************************");
 		ft_keep_going(&keep_going, &sol, &sol_cost, map);
 		if (keep_going)
 			ft_free_queue(&sol);
