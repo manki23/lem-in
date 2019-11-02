@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:47 by manki             #+#    #+#             */
-/*   Updated: 2019/11/02 13:11:47 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 17:33:38 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,14 @@ static char		ft_sol_is_colliding(t_queue *sol, t_room *path, t_room *end)
 	return (0);
 }
 
-void	ft_stock_solution(t_queue **sol, t_all **map)
+void			ft_stock_solution(t_queue **sol, t_all **map)
 {
 	t_room		*tmp;
 	t_room		*start;
 	t_room		*end;
 
-	start = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
-				CMD_START));
-	end = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
-				CMD_END));
+	start = ft_get_room(&map[0]->room, CMD_START);
+	end = ft_get_room(&map[0]->room, CMD_END);
 	tmp = map[0]->room;
 	while (tmp)
 	{
@@ -62,13 +60,12 @@ void	ft_stock_solution(t_queue **sol, t_all **map)
 	ft_sort_queue(sol);
 }
 
-int		ft_another_path_exist(t_all *map, t_room **room)
+int				ft_another_path_exist(t_all *map, t_room **room)
 {
 	t_room	*start;
 	int		i;
 
-	start = ft_get_room(&map->room, ft_get_room_pos_by_cmd(map->room,
-				CMD_START));
+	start = ft_get_room(&map->room, CMD_START);
 	i = -1;
 	while (room[++i])
 		if (room[i]->visit == 0 && room[i]->child == NULL && room[i] != start)
@@ -76,16 +73,14 @@ int		ft_another_path_exist(t_all *map, t_room **room)
 	return (0);
 }
 
-void	ft_visit_node(t_room **room, t_all **map, char *stop)
+void			ft_visit_node(t_room **room, t_all **map, char *stop)
 {
 	t_room	*end;
 	t_room	*start;
 	int		i;
 
-	start = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
-				CMD_START));
-	end = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
-				CMD_END));
+	start = ft_get_room(&map[0]->room, CMD_START);
+	end = ft_get_room(&map[0]->room, CMD_END);
 	i = -1;
 	while (room[0]->tab && room[0]->tab[++i] && !stop[0])
 	{
@@ -101,7 +96,7 @@ void	ft_visit_node(t_room **room, t_all **map, char *stop)
 	room[0]->visit++;
 }
 
-void	ft_check_duplicates(t_all **map)
+void			ft_check_duplicates(t_all **map)
 {
 	t_room	*tmp;
 
@@ -114,19 +109,4 @@ void	ft_check_duplicates(t_all **map)
 			tmp->child = tmp->old_child;
 		tmp = tmp->next;
 	}
-}
-
-int		ft_solution_len(t_room *room)
-{
-	t_room	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = room;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->child;
-	}
-	return (i);
 }

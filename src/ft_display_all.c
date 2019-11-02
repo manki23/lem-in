@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/10/09 11:47:06 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 17:35:24 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_inside_sol(t_queue *sol)
 	while (tmp)
 	{
 		ft_printf("path name : %s\n", tmp->room->name);
-		ft_printf("path cost : %d\n", ft_solution_len(tmp->room));
+		ft_printf("path cost : %d\n", calc_nodes(tmp->room));
 		ft_putendl("//////////////");
 		tmp = tmp->next;
 	}

@@ -6,13 +6,13 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 11:12:35 by manki             #+#    #+#             */
-/*   Updated: 2019/10/29 17:08:22 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 18:06:17 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-int		check_end(t_room **room, int size)
+int				check_end(t_room **room, int size)
 {
 	int		i;
 	t_room	**tmp;
@@ -32,7 +32,7 @@ int		check_end(t_room **room, int size)
 	return (1);
 }
 
-t_room	*chose_display(t_queue *display, int size)
+static t_room	*chose_display(t_queue *display, int size)
 {
 	t_queue	*tmp_q;
 	int		i;
@@ -57,16 +57,16 @@ t_room	*chose_display(t_queue *display, int size)
 	return (tmp_q->room);
 }
 
-void	stock_ants_sol(int *ants, t_queue *display, int c_ants, int size)
+static void		stock_ants_sol(int *ant, t_queue *display, int c_ants, int size)
 {
 	int		c;
 	t_queue	*tmp_q;
 
 	tmp_q = display;
 	c = 0;
-	while (total_ants(ants, ft_queue_len(display)) < c_ants)
+	while (total_ants(ant, ft_queue_len(display)) < c_ants)
 	{
-		ants[c]++;
+		ant[c]++;
 		c++;
 		if (c >= size)
 			c = 0;
@@ -75,13 +75,13 @@ void	stock_ants_sol(int *ants, t_queue *display, int c_ants, int size)
 	tmp_q = display;
 	while (tmp_q)
 	{
-		tmp_q->ants = ants[c];
+		tmp_q->ants = ant[c];
 		c++;
 		tmp_q = tmp_q->next;
 	}
 }
 
-void	chose_ants(int *ants, int c_ants, int size, t_queue **display)
+void			chose_ants(int *ants, int c_ants, int size, t_queue **display)
 {
 	t_queue	*tmp_q;
 	int		i;
@@ -110,7 +110,7 @@ void	chose_ants(int *ants, int c_ants, int size, t_queue **display)
 	stock_ants_sol(ants, *display, c_ants, size);
 }
 
-void	stock_room_sol(t_room **tmp, t_queue *display, int c_ants)
+void			stock_room_sol(t_room **tmp, t_queue *display, int c_ants)
 {
 	int i;
 	int k;

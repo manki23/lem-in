@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 19:01:13 by manki             #+#    #+#             */
-/*   Updated: 2019/11/02 15:47:56 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 18:03:12 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,7 @@ void				ft_print_solutions(t_queue *list);
 t_room				*ft_room_lstnew(char *name, t_coord c, char cmd);
 void				ft_room_lstadd(t_room **l, char *name, t_coord c, char cmd);
 int					ft_room_lstlen(t_room *list);
-t_room				*ft_get_room(t_room **list, int position);
-int					ft_get_room_pos_by_cmd(t_room *list, char cmd);
+t_room				*ft_get_room(t_room **list, char cmd);
 
 int					ft_tab_len(t_room *r);
 char				ft_add_tube(t_room **list, char *room_a, char *room_b);
@@ -114,9 +113,9 @@ void				ft_stock_solution(t_queue **sol, t_all **map);
 int					ft_another_path_exist(t_all *map, t_room **room);
 void				ft_visit_node(t_room **room, t_all **map, char *stop);
 void				ft_check_duplicates(t_all **map);
-int					ft_solution_len(t_room *room);
 
-void				ft_put_child(t_all **map, t_room **room, t_room **start);
+void				ft_set_map_ptr(t_all **map);
+void				ft_put_child(t_room **room, t_room **start);
 void				ft_copy_in_old(t_all **map);
 void				ft_reset_visit(t_all **map);
 void				ft_clean_path(t_all **map);
@@ -125,6 +124,9 @@ t_queue				*ft_breadth_first_search(t_all *map);
 
 int					ft_cost_computation(t_all **map, t_queue **sol);
 
+void				print_sol(t_room **tmp, int *i, int c_ants);
+int					already_pass(t_room **tmp, int i);
+void				tmp_next_child(t_room **tmp, int i);
 void				display(t_queue **sol, int ants);
 int					calc_nodes(t_room *room);
 
@@ -135,8 +137,6 @@ int					sort(t_queue *cpy, t_queue *before, t_queue *next
 						, t_queue **first);
 void				set_next(t_queue **cpy, t_queue **before, t_queue **next);
 
-t_room				*chose_display(t_queue *display, int size);
-void				stock_ants_sol(int *ants, t_queue *dis, int c_ants, int s);
 void				chose_ants(int *ants, int c_ants, int size, t_queue **disp);
 void				stock_room_sol(t_room **tmp, t_queue *display, int c_ants);
 int					check_end(t_room **room, int size);

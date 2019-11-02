@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:52:32 by manki             #+#    #+#             */
-/*   Updated: 2019/11/02 12:19:54 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 17:43:22 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ void		ft_clean_path(t_all **map)
 	t_room	*end;
 	t_room	*start;
 
-	end = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
-				CMD_END));
-	start = ft_get_room(&map[0]->room, ft_get_room_pos_by_cmd(map[0]->room,
-				CMD_START));
+	end = ft_get_room(&map[0]->room, CMD_END);
+	start = ft_get_room(&map[0]->room, CMD_START);
 	tmp = map[0]->room;
 	while (tmp)
 	{
@@ -41,7 +39,7 @@ void		ft_clean_path(t_all **map)
 	}
 }
 
-char	ft_is_in_list(t_queue *list, t_room *room)
+char		ft_is_in_list(t_queue *list, t_room *room)
 {
 	t_queue		*tmp;
 
@@ -55,27 +53,9 @@ char	ft_is_in_list(t_queue *list, t_room *room)
 	return (0);
 }
 
-void	ft_forget_this_path(t_room **begin, t_room **start, t_all **map)
-{
-	t_room		*tmp;
-	t_room		*tmp2;
-
-	ft_reset_visit(map);
-	tmp = begin[0];
-	while (tmp && tmp != start[0] && !tmp->visit)
-	{
-		tmp2 = tmp->parent;
-		tmp->parent = tmp->old_parent;
-		tmp->child = tmp->old_child;
-		tmp->visit++;
-		tmp = tmp2;
-	}
-}
-
-void		ft_put_child(t_all **map, t_room **end, t_room **start)
+void		ft_put_child(t_room **end, t_room **start)
 {
 	t_room	*tmp;
-	int		i;
 
 	tmp = end[0];
 	while (tmp && tmp->parent && tmp->parent != start[0])
@@ -86,14 +66,6 @@ void		ft_put_child(t_all **map, t_room **end, t_room **start)
 	if (tmp->parent == start[0] && tmp == end[0])
 		tmp->parent->child = tmp;
 	tmp = start[0];
-	i = -1;
-	(void)map;
-//	while (tmp && tmp->tab && tmp->tab[++i])
-//	{
-//		if (tmp->tab[i]->parent && !tmp->tab[i]->child && tmp->tab[i] != end[0]
-//		&& tmp->tab[i] != start[0])
-//			ft_forget_this_path(&tmp->tab[i], start, map);
-//	}
 }
 
 void		ft_copy_in_old(t_all **map)
@@ -109,4 +81,16 @@ void		ft_copy_in_old(t_all **map)
 			tmp->old_child = tmp->child;
 		tmp = tmp->next;
 	}
+}
+
+void		ft_set_map_ptr(t_all **map)
+{
+	if (map[0]->ant_nb)
+		free(map[0]->ant_nb);
+	if (map[0]->path_cost)
+		free(map[0]->path_cost);
+	map[0]->ant_nb = map[0]->old_ant_nb;
+	map[0]->path_cost = map[0]->old_path_cost;
+	map[0]->old_path_cost = NULL;
+	map[0]->old_ant_nb = NULL;
 }

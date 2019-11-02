@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/01 17:31:36 by manki             #+#    #+#              #
-#    Updated: 2019/10/06 18:02:28 by manki            ###   ########.fr        #
+#    Updated: 2019/11/02 17:55:38 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ LIB_PATH = ./libft/
 SRC_NAME = main.c ft_check_line.c ft_check_map.c ft_stock_room.c free.c \
 		  ft_add_tube.c ft_room_list.c ft_stock_tube.c \
 		   ft_breadth_first_search.c ft_queue_utils.c ft_bfs_utils.c \
-		   ft_bfs_utils_2.c ft_cost_computation.c sort.c display_tools.c \
-		   ft_debbug_display.c ft_check_arg.c ft_sort_queue.c display.c \
-		   ft_display_all.c
+		   ft_bfs_utils_2.c ft_cost_computation.c sort.c \
+		   display_tools.c display_tools_2.c ft_display_all.c \
+		   ft_debbug_display.c ft_check_arg.c ft_sort_queue.c display.c
 
 INC_NAME = lem_in.h
 LIB_NAME = libft.a

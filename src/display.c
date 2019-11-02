@@ -6,55 +6,13 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:59:53 by yodana            #+#    #+#             */
-/*   Updated: 2019/11/01 16:47:22 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 17:58:26 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lem_in.h"
 
-void	print_sol(t_room **tmp, int *i, int c_ants)
-{
-	if (tmp[*i])
-	{
-		ft_printf("L%d-%s", *i + 1, tmp[*i]->name);
-	}
-	if (*i < c_ants)
-		*i = *i + 1;
-}
-
-int		already_pass(t_room **tmp, int i)
-{
-	int		o;
-	t_room	*end;
-
-	if (!tmp[i])
-		return (-1);
-	end = ft_get_room(&tmp[i], ft_get_room_pos_by_cmd(tmp[i],
-				CMD_END));
-	o = 0;
-	while (o < i)
-	{
-		if (tmp[o] && tmp[i] && tmp[o] == tmp[i] && tmp[i] != end)
-			return (1);
-		o++;
-	}
-	return (-1);
-}
-
-void	tmp_next_child(t_room **tmp, int i)
-{
-	int		o;
-
-	o = 0;
-	while (o < i)
-	{
-		if (tmp[o])
-			tmp[o] = tmp[o]->child;
-		o++;
-	}
-}
-
-void	first_display(t_queue *d, t_room **tmp, int c_ants)
+static void		first_display(t_queue *d, t_room **tmp, int c_ants)
 {
 	int		i;
 	int		print;
@@ -83,14 +41,19 @@ void	first_display(t_queue *d, t_room **tmp, int c_ants)
 	ft_printf("\n");
 }
 
-void	display_sol(t_queue **display, int c_ants, int i, int print)
+static void		ft_savelines(t_room ***tmp, int **ants)
+{
+	free(tmp[0]);
+	free(ants[0]);
+}
+
+static void		display_sol(t_queue **display, int c_ants, int i, int print)
 {
 	t_room	**tmp;
 	int		*ants;
 
-	if (!(tmp = (t_room **)malloc(sizeof(t_room *) * (c_ants + 1))))
-		return ;
-	if (!(ants = malloc(sizeof(int*) * ft_queue_len(display[0]))))
+	if (!(tmp = (t_room **)malloc(sizeof(t_room *) * (c_ants + 1)))
+		|| !(ants = malloc(sizeof(int*) * ft_queue_len(display[0]))))
 		return ;
 	chose_ants(ants, c_ants, ft_queue_len(display[0]), &display[0]);
 	stock_room_sol(tmp, display[0], c_ants);
@@ -110,11 +73,10 @@ void	display_sol(t_queue **display, int c_ants, int i, int print)
 		ft_printf("\n");
 		i = 0;
 	}
-	free(tmp);
-	free(ants);
+	ft_savelines(&tmp, &ants);
 }
 
-void	display(t_queue **sol, int ants)
+void			display(t_queue **sol, int ants)
 {
 	int i;
 
@@ -134,14 +96,4 @@ void	display(t_queue **sol, int ants)
 	}
 	else
 		display_sol(sol, ants, 0, 0);
-	//for debbugg:
-//	t_queue *tmp;
-//	tmp = *sol;
-//	ft_printf("------------------------------\nYodana:\n");
-//	for(int u = 0; u < ft_queue_len(*sol); u++) {
-//		ft_printf("Path[%d]:\n\t\tnodes == %d\n", u, tmp->nodes);
-//		ft_printf("\t\tants == %d\n\t\tc_t == %d\n", tmp->ants, tmp->c_t);
-//		tmp = tmp->next;
-//	}
-//	ft_printf("-------------------------------\n");
 }

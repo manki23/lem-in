@@ -6,7 +6,7 @@
 /*   By: manki <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:23 by manki             #+#    #+#             */
-/*   Updated: 2019/10/09 11:36:25 by manki            ###   ########.fr       */
+/*   Updated: 2019/11/02 17:34:52 by manki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		ft_initialize_tab(int **tab, int **nb, t_queue **sol, int len)
 	i = -1;
 	while (++i < len)
 	{
-		tab[0][i] = ft_solution_len(tmp->room);
+		tab[0][i] = calc_nodes(tmp->room);
 		nb[0][i] = 0;
 		tmp = tmp->next;
 	}
