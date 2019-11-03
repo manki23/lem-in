@@ -6,7 +6,7 @@
 #    By: manki <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 10:30:31 by manki             #+#    #+#              #
-#    Updated: 2019/09/16 13:43:31 by manki            ###   ########.fr        #
+#    Updated: 2019/11/03 13:16:22 by manki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,11 +56,11 @@ bin:
 
 $(NAME): bin  $(HEADER) $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	printf "$(GREEN) LIBFT DONE SUCESS! $(END_COLOR)"
+	printf "                                                  \r$(GREEN) LIBFT DONE SUCESS! $(END_COLOR)"
 
 $(BIN_FOLDER)%.o :%.c
 	$(CC) $< -c -I $(HEADER) -o $@ $(FLAGS)
-	printf "$(YELLOW) Compiling:$(END_COLOR) $<  $(GREEN)[OK] $(END_COLOR)              \r"
+	printf "$(YELLOW) Compiling:$(END_COLOR) $<  $(GREEN)[OK] $(END_COLOR)                                                    \r"
 
 clean: 
 	rm -rf $(BIN_FOLDER)
